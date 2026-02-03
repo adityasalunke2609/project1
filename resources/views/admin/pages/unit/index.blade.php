@@ -2,11 +2,11 @@
 @section("content")
     <div class="page-inner">
 
-        @include("admin.pages.tax.create")
+        @include("admin.pages.unit.create")
 
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Tax</div>
+                <div class="card-title">Unit</div>
             </div>
             <div class="card-body">
                 <table class="table">
@@ -14,7 +14,6 @@
                         <tr>
                             <th scope="col">SR.No</th>
                             <th scope="col">Unit Name</th>
-                            <th scope="col"> Tax Percentage</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -22,7 +21,6 @@
                         <tr>
                             <td>1</td>
                             <td>Mark</td>
-                         
                             <td>
                                 @include("admin.pages.tax.edit")
                                 <i class="fas fa-trash-alt text-danger fs-4"></i>
@@ -33,4 +31,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

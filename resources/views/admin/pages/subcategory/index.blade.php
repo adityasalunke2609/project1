@@ -27,24 +27,9 @@
                             <td>Mark</td>
                             <td><img src="{{ asset('') }}"> </td>
                             <td><img src="{{ asset('') }}"> </td>
-                            <td><i class="fa-solid fa-pen-to-square text-success fs-3">
-                                    <i class="fas fa-trash-alt text-danger fs-3"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td><img src="{{ asset('') }}"> </td>
-                            <td><img src="{{ asset('') }}"> </td>
-                            <td><i class="fa-solid fa-pen-to-square text-success fs-3">
-                                    <i class="fas fa-trash-alt text-danger fs-3"></i></td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td><img src="{{ asset('') }}"> </td>
-                            <td><img src="{{ asset('') }}"> </td>
-                            <td><i class="fa-solid fa-pen-to-square text-success fs-3">
-                                    <i class="fas fa-trash-alt text-danger fs-3"></i></td>
+                            <td> @include("admin.pages.subcategory.edit")
+                                <i class="fas fa-trash-alt text-danger fs-3"></i>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
