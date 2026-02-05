@@ -9,7 +9,8 @@
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-        <form action="/getvalue" method="POST" enctype="multipart/form-data">
+
+        <form action="/save" method="POST">
             @csrf
 
             <div class="modal-content border-primary shadow-sm rounded">
@@ -23,23 +24,23 @@
 
                     <div class="mb-3">
                         <label class="form-label">Category Name</label>
-                        <input type="text" class="form-control">
+                        <input type="text" name="categoryName" class="form-control">
                     </div>
 
                     <div class="row text-center">
                         <div class="col-md-6">
                             <p>Select New Category Image</p>
                             <!-- <img id="catImg" src="{{ asset('admin/img/profile.jpg') }}" class="mb-2" width="150"> -->
-                            <input type="file" class="form-control">
+                            <input type="file" class="form-control" name="categoryimage">
                         </div>
 
                         <div class="col-md-6">
                             <p>Select New Banner Image</p>
                             <!-- <img id="bannerImg" src="{{ asset('admin/img/profile2.jpg') }}" class="mb-2" width="150"> -->
 
-                            <input type="file" class="form-control">
+                            <input type="file" class="form-control" name="categorybannerimage">
                         </div>
-
+                        
                     </div>
                 </div>
 
@@ -47,7 +48,7 @@
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-success">Save changes</button>
                 </div>
-                
+
             </div>
         </form>
     </div>

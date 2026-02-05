@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use function PHPUnit\Framework\returnArgument;
 
 class CategoryController extends Controller
 {
-  
+
     function category()
     {
-        return view("admin.pages.category.index");
+        $category = tbl_category::all();
+
+        return view("admin.pages.category.index", compact("category"));
     }
 
-    function getvalue(Request $request): RedirectResponse
+    function storecategory(Request $request)
     {
-        $categoryName=$request->categoryName ;
-        return redirect(to:"/save/$categoryName");
-
-    }
-
-    function save($categoryName):mixed
-    {
-     return $categoryName;
+        $category = new tbl_category();
+        $category->category_name = $request->categoryName;
+        $category->category_image = "";
+        $category->category_banner_image = "";
+        $category->save();
+        return redirect("/category");
     }
 }

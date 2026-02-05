@@ -11,29 +11,31 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-primary shadow-sm rounded">
 
-            <div class="modal-header">
-                <h5 class="modal-title">Add Tax</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
+            <form action="taxsave" method="post">
+                @csrf
 
-            <div class="modal-body">
-
-                <div class="mb-3">
-                    <label class="form-label">Tax Name</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Tax percentage</label>
-                    <input type="text" class="form-control">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Tax</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
+                <div class="modal-body">
 
-            </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tax Name</label>
+                        <input type="text" class="form-control" name="taxName">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tax percentage</label>
+                        <input type="text" class="form-control" name="taxPercentage">
+                    </div>
+                </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success">Save changes</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </form>
 
         </div>
     </div>

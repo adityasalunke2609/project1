@@ -1,10 +1,7 @@
 @extends("admin.layout.master")
 @section("content")
     <div class="page-inner">
-
-
         @include("admin.pages.category.create")
-
 
         <div class="card">
             <div class="card-header">
@@ -21,19 +18,21 @@
                             <th scope="col">ACTION</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
-                            <td><img src="{{ asset('admin/img/chadengle.jpg') }}"> </td>
-                            <td>
-                                @include("admin.pages.category.edit")
-                                    <i class="fas fa-trash-alt text-danger fs-2"></i></td>
-
-
-
-                        </tr>
+                        
+                        @foreach ($category as $data)
+                            <tr>
+                                <td>{{  $data->id }}</td>
+                                <td>{{$data->category_name}}</td>
+                                <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
+                                <td><img src="{{ asset('admin/img/chadengle.jpg') }}"> </td>
+                                <td>
+                                    @include("admin.pages.category.edit")
+                                    <i class="fas fa-trash-alt text-danger fs-2"></i>
+                                </td>
+                            </tr>
+                        @endforeach
 
                     </tbody>
                 </table>

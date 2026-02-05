@@ -1,8 +1,8 @@
-@extends("admin.layout.master")
-@section("content")
+@extends('admin.layout.master')
+@section('content')
     <div class="page-inner">
 
-        @include("admin.pages.unit.create")
+        @include('admin.pages.unit.create')
 
         <div class="card">
             <div class="card-header">
@@ -18,14 +18,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Mark</td>
-                            <td>
-                                @include("admin.pages.tax.edit")
-                                <i class="fas fa-trash-alt text-danger fs-4"></i>
-                            </td>
-                        </tr>
+                        @foreach ($unit as $data)
+                            <tr>
+
+                                <td>{{ $data->id }}</td>
+                                <td>{{ $data->unit_name }}</td>
+                                <td>
+                                    @include('admin.pages.tax.edit')
+                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
