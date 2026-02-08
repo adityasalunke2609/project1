@@ -10,7 +10,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
 
-        <form action="/save" method="POST">
+        <form action="/categorysave" method="POST">
             @csrf
 
             <div class="modal-content border-primary shadow-sm rounded">
@@ -40,7 +40,7 @@
 
                             <input type="file" class="form-control" name="categorybannerimage">
                         </div>
-                        
+
                     </div>
                 </div>
 

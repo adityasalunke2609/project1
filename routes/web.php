@@ -12,7 +12,7 @@ Route::get('/', [adminController::class,'dashboard']);
 
 // for category 
 Route::get('/category', [CategoryController::class,'category']);
-Route::post('/save', [CategoryController::class, 'storecategory']);
+Route::post('/categorysave', [CategoryController::class, 'storecategory']);
 
 
 // for subcategory 
@@ -28,7 +28,7 @@ Route::post("/taxsave",[TaxController::class,'storetax']);
 
 // for unit 
 Route::get('/unit', [UnitController::class,'unit']);
-Route::post("/save",[UnitController::class,'storeunit']);
+Route::post("/unitsave",[UnitController::class,'storeunit']);
 // Route::get("/save/{unitName}",[UnitController::class,'save']);
 
 
