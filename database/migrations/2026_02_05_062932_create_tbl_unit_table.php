@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_unit', function (Blueprint $table) {
-            $table->id();
+            $table->integer("unit_id")->autoIncrement();;
             $table->string("unit_name");
             $table->timestamps();
         });

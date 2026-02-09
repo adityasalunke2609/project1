@@ -1,9 +1,9 @@
-@extends("admin.layout.master")
-@section("content")
+@extends('admin.layout.master')
+@section('content')
     <div class="page-inner">
 
 
-        @include("admin.pages.product.create")
+        @include('admin.pages.product.create')
 
 
         <div class="card">
@@ -24,19 +24,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>Mark</td>
-                            <td>
-                                @include("admin.pages.product.edit")
-                                <i class="fas fa-trash-alt text-danger fs-2"></i>
-                            </td>
-                        </tr>
-
+                        @foreach ($product as $data)
+                            <tr>
+                                <td>{{ $data->id }}</td>
+                                <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
+                                <td>{{ $data->product_tax }}</td>
+                                <td>{{ $data->product_caterogy_id }}</td>
+                                <td>{{ $data->product_subcaterogy_id }}</td>
+                                <td>Active</td>
+                                <td>
+                                    @include('admin.pages.product.edit')
+                                    <i class="fas fa-trash-alt text-danger fs-2"></i>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

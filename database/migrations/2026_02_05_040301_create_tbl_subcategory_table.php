@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_subcategory', function (Blueprint $table) {
-            $table->id();
+           $table->integer("subcategory_id")->autoIncrement();
             $table->string("categoty_id");
             $table->string("subcategory_name");
             $table->string("subcategory_image");

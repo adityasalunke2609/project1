@@ -11,26 +11,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [adminController::class,'dashboard']);
 
 // for category 
-Route::get('/category', [CategoryController::class,'category']);
-Route::post('/categorysave', [CategoryController::class, 'storecategory']);
+Route::get('/admin/category', [CategoryController::class,'index']);
+Route::post('/admin/category', [CategoryController::class, 'store']);
 
 
 // for subcategory 
-Route::get('/subcategory', [SubCategoryController::class,'subcategory']);
+Route::get('/subcategory', [SubCategoryController::class,'index']);
 
 
 // for tax 
-Route::get('/tax', [TaxController::class,'tax']);
-Route::post("/taxsave",[TaxController::class,'storetax']);
-// Route::get("/taxsave/{taxName}",[UnitController::class,'taxsave']);
+Route::get('/admin/tax', [TaxController::class,'index']);
+Route::post("/admin/tax",[TaxController::class,'store']); 
 
 
 
 // for unit 
-Route::get('/unit', [UnitController::class,'unit']);
-Route::post("/unitsave",[UnitController::class,'storeunit']);
-// Route::get("/save/{unitName}",[UnitController::class,'save']);
+Route::get('/admin/unit', [UnitController::class,'index']);
+Route::post("/admin/unit",[UnitController::class,'store']); 
 
 
 // for product 
-Route::get('/product', [ProductController::class,'product']);
+Route::get('/admin/product', [ProductController::class,'index']);
+Route::post('/admin/product', [ProductController::class,'store']);

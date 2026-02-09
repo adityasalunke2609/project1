@@ -32,7 +32,7 @@
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../demo1/index.html">
+                                <a href="#dashboard">
                                     <span class="sub-item">Dashboard 1</span>
                                 </a>
                             </li>
@@ -49,25 +49,25 @@
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="/category">
+                                <a href="/admin/category">
                                     <span class="sub-item">Category</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/subcategory">
+                                <a href="/admin/subcategory">
                                     <span class="sub-item"> Sub Category</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/tax">
+                                <a href="/admin/tax">
                                     <span class="sub-item">Taxes</span>
                                 </a>
                             </li>
 
                             <li>
-                                <a href="/unit">
+                                <a href="/admin/unit">
                                     <span class="sub-item">Unit</span>
                                 </a>
                             </li>
@@ -76,7 +76,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="product">
+                    <a href="/admin/product">
                         <i class="fas fa-desktop"></i>
                         <p>Product</p>
                     </a>

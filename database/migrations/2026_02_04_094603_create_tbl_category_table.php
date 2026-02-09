@@ -11,8 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('tbl_category', function (Blueprint $table) {
-            $table->id();
-            
+            $table->integer("category_id")->autoIncrement();
             $table->string("category_name");
             $table->string("category_image");
             $table->string("category_banner_image");

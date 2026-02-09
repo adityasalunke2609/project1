@@ -10,7 +10,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
 
-        <form action="/categorysave" method="POST">
+        <form action="/admin/category" method="POST">
             @csrf
 
             <div class="modal-content border-primary shadow-sm rounded">

@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-primary shadow-sm rounded">
             
-            <form action="unitsave" method="post">
+            <form action="/admin/unit" method="post">
                 @csrf
 
                 <div class="modal-header">

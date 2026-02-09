@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_tax', function (Blueprint $table) {
-            $table->id();
+            $table->integer("tax_id")->autoIncrement();
             $table->string("tax_name");
             $table->string("tax_percentage");
             $table->timestamps();

@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-primary shadow-sm rounded">
 
-            <form action="taxsave" method="post">
+            <form action="/admin/tax" method="post">
                 @csrf
 
                 <div class="modal-header">

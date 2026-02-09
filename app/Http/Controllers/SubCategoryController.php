@@ -8,20 +8,20 @@ use Illuminate\Http\Request;
 class SubCategoryController extends Controller
 {
   
-    function subcategory()
+    function index()
     {
         $subcategory = tbl_subcategory::all();
         return view("admin.pages.subcategory.index", compact("subcategory"));
     }
 
-    function storecategory(Request $request)
+    function store(Request $request)
     {
         $subcategory = new tbl_subcategory();
         $subcategory->id= $request->
         $subcategory->subcategory_name = $request->SubCategoryName;
         $subcategory->subcategory_image = "";
         $subcategory->save();
-        return redirect("/subcategory");
+        return redirect("/admin/store");
     }
 }
 

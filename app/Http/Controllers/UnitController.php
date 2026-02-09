@@ -7,17 +7,17 @@ use Illuminate\Http\Request;
 
 class UnitController extends Controller
 {
-    function unit()
+    function index()
     {
         $unit = tbl_unit::all();
         return view("admin.pages.unit.index",compact('unit'));
     }
 
-    function storeunit(Request $request)
+    function store(Request $request)
     {
         $unit=new tbl_unit();
         $unit->unit_name=$request->unitName;
         $unit->save();
-        return redirect("/unit");
+        return redirect("/admin/unit");
     }
 }
