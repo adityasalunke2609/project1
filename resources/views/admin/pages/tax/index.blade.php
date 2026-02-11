@@ -1,15 +1,18 @@
-@extends("admin.layout.master")
-@section("content")
+@extends('admin.layout.master')
+@section('content')
     <div class="page-inner">
-
-        @include("admin.pages.tax.create")
 
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Tax</div>
+                <div class="row">
+                    <div class="card-title col-md-6">tax</div>
+                    <div class="col-md-6 d-flex justify-content-end ">
+                        @include('admin.pages.tax.create')
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <table class="table">
+                <table class="table table-head-bg-secondary">
                     <thead>
                         <tr>
                             <th scope="col">SR.No</th>
@@ -20,19 +23,19 @@
                     </thead>
 
                     <tbody>
-                        @foreach ( $tax as $data)
-
-                        <tr>
-                            <td>{{ $data->id }}</td>
-                            <td>{{ $data->tax_name }}</td>
-                            <td>{{ $data->tax_percentage }}</td>
-                            <td>
-                                @include("admin.pages.tax.edit")
-                                    <i class="fas fa-trash-alt text-danger fs-4"></i></td>
-                        </tr>
+                        @foreach ($tax as $data)
+                            <tr>
+                                <td>{{ $data->tax_id }}</td>
+                                <td>{{ $data->tax_name }}</td>
+                                <td>{{ $data->tax_percentage }}</td>
+                                <td>
+                                    @include('admin.pages.tax.edit')
+                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
-                    
+
                 </table>
             </div>
         </div>

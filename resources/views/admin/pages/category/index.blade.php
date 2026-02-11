@@ -1,14 +1,19 @@
-@extends("admin.layout.master")
-@section("content")
+@extends('admin.layout.master')
+@section('content')
     <div class="page-inner">
-        @include("admin.pages.category.create")
+
 
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Product Category</div>
+                <div class="row">
+                    <div class="card-title col-md-6 ">Product Category</div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        @include('admin.pages.category.create')
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+                <table class="table table-head-bg-secondary">
                     <thead>
                         <tr>
                             <th scope="col">SR.NO</th>
@@ -20,16 +25,16 @@
                     </thead>
 
                     <tbody>
-                        
+
                         @foreach ($category as $data)
                             <tr>
-                                <td>{{  $data->id }}</td>
-                                <td>{{$data->category_name}}</td>
+                                <td>{{ $data->category_id }}</td>
+                                <td>{{ $data->category_name }}</td>
                                 <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
                                 <td><img src="{{ asset('admin/img/chadengle.jpg') }}"> </td>
                                 <td>
-                                    @include("admin.pages.category.edit")
-                                    <i class="fas fa-trash-alt text-danger fs-2"></i>
+                                    @include('admin.pages.category.edit')
+                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
                                 </td>
                             </tr>
                         @endforeach

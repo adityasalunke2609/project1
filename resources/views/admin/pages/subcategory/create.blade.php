@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<div class="d-flex justify-content-end align-items-center mb-3">
+<div class="d-flex justify-content-end align-items-center mb-4">
     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         + Add Sub Category
     </button>
@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content border-primary shadow-sm rounded">
 
-            <form action="subcategorysave" method="post">
+            <form action="/admin/subcategory" method="post">
                 @csrf
 
                 <div class="modal-header">
@@ -23,11 +23,11 @@
 
                     <div class="mb-3">
                         <label class="form-label">Category</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" aria-label="Default select example" name="categoryName">
+
+                            @foreach ($category as $data)
+                                <option value="{{ $data->category_id }}">{{ $data->category_name }}</option>
+                            @endforeach
                         </select>
                     </div>
 

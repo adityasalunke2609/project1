@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_category;
 use App\Models\tbl_subcategory;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
-  
-    function index()
+    public function index()
     {
         $subcategory = tbl_subcategory::all();
-        return view("admin.pages.subcategory.index", compact("subcategory"));
+        $category = tbl_category::all();
+
+        return view('admin.pages.subcategory.index', compact('subcategory', 'category'));
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
-        $subcategory = new tbl_subcategory();
-        $subcategory->id= $request->
+        $subcategory = new tbl_subcategory;
         $subcategory->subcategory_name = $request->SubCategoryName;
-        $subcategory->subcategory_image = "";
+        $subcategory->categoty_id = $request->categoryName;
+        $subcategory->subcategory_image = $request->SubCategoryImage;
         $subcategory->save();
-        return redirect("/admin/store");
+
+        return redirect('/admin/subcategory');
     }
 }
-

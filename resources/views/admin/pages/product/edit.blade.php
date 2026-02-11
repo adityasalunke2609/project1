@@ -1,4 +1,4 @@
-<i class="fa-solid fa-pen-to-square text-primary fs-2" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+<i class="fa-solid fa-pen-to-square text-primary fs-4" data-bs-toggle="modal" data-bs-target="#editModal"></i>
 
 
 

@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<div class="d-flex justify-content-end align-items-center mb-3">
+<div class="d-flex justify-content-end align-items-center mb-4">
     <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Add Category
     </button>

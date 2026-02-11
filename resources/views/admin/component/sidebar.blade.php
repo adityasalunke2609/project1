@@ -1,10 +1,10 @@
-<div class="sidebar" data-background-color="dark">
+<div class="sidebar" data-background-color="light">
     <div class="sidebar-logo">
         <!-- Logo Header -->
-        <div class="logo-header" data-background-color="dark">
+        <div class="logo-header">
             <a href="index.html" class="logo">
-                <img src="{{ asset('admin/img/kaiadmin/logo_light.svg') }}" alt="navbar brand" class="navbar-brand"
-                    height="20" />
+                <img src="{{ asset('admin/img/kaiadmin/Untitled (2).png') }}" alt="navbar brand" class="navbar-brand"
+                    height="70" width="200"/>
             </a>
             <div class="nav-toggle">
                 <button class="btn btn-toggle toggle-sidebar">
@@ -38,6 +38,13 @@
                             </li>
                         </ul>
                     </div>
+                </li>
+
+                <li class="nav-item">
+                    <a href="/admin/product">
+                        <i class="fas fa-desktop"></i>
+                        <p>Product</p>
+                    </a>
                 </li>
 
                 <li class="nav-item">
@@ -75,12 +82,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a href="/admin/product">
-                        <i class="fas fa-desktop"></i>
-                        <p>Product</p>
-                    </a>
-                </li>
+
 
 
                 <!-- <li class="nav-item">

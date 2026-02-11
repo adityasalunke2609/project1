@@ -1,17 +1,19 @@
 @extends('admin.layout.master')
 @section('content')
     <div class="page-inner">
-
-
-        @include('admin.pages.product.create')
-
-
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Product Category</div>
+
+                <div class="row">
+                    <div class="card-title col-md-6">Product Category</div>
+                    <div class="col-md-6 d-flex justify-content-end">
+                        @include('admin.pages.product.create')
+                    </div>
+                </div>
+                
             </div>
             <div class="card-body">
-                <table class="table table-hover">
+              <table class="table table-head-bg-secondary">
                     <thead>
                         <tr>
                             <th scope="col">SR.NO</th>
@@ -26,7 +28,7 @@
                     <tbody>
                         @foreach ($product as $data)
                             <tr>
-                                <td>{{ $data->id }}</td>
+                                <td>{{ $data->product_id }}</td>
                                 <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
                                 <td>{{ $data->product_tax }}</td>
                                 <td>{{ $data->product_caterogy_id }}</td>
@@ -34,7 +36,7 @@
                                 <td>Active</td>
                                 <td>
                                     @include('admin.pages.product.edit')
-                                    <i class="fas fa-trash-alt text-danger fs-2"></i>
+                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
                                 </td>
                             </tr>
                         @endforeach

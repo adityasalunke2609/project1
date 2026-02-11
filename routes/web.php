@@ -16,7 +16,8 @@ Route::post('/admin/category', [CategoryController::class, 'store']);
 
 
 // for subcategory 
-Route::get('/subcategory', [SubCategoryController::class,'index']);
+Route::get('/admin/subcategory', [SubCategoryController::class,'index']);
+Route::post('/admin/subcategory', [SubCategoryController::class,'store']);
 
 
 // for tax 
@@ -28,6 +29,7 @@ Route::post("/admin/tax",[TaxController::class,'store']);
 // for unit 
 Route::get('/admin/unit', [UnitController::class,'index']);
 Route::post("/admin/unit",[UnitController::class,'store']); 
+Route::post("/admin/unit/delete",[UnitController::class,'remove']); 
 
 
 // for product 
