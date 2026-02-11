@@ -14,6 +14,7 @@ Route::get('/', [adminController::class, 'dashboard']);
 Route::get('/admin/category', [CategoryController::class, 'index']);
 Route::post('/admin/category', [CategoryController::class, 'store']);
 Route::post('/admin/category/delete', [CategoryController::class, 'remove']);
+Route::post('/admin/category/edit', [CategoryController::class, 'edit']);
 
 // for subcategory
 Route::get('/admin/subcategory', [SubCategoryController::class, 'index']);
@@ -23,6 +24,8 @@ Route::post('/admin/subcategory/delete', [SubCategoryController::class, 'remove'
 // for tax
 Route::get('/admin/tax', [TaxController::class, 'index']);
 Route::post('/admin/tax', [TaxController::class, 'store']);
+Route::post('/admin/tax/delete', [TaxController::class, 'remove']);
+Route::post('/admin/tax/edit', [TaxController::class, 'edit']);
 
 // for unit
 Route::get('/admin/unit', [UnitController::class, 'index']);

@@ -35,7 +35,13 @@
 
                                 <td>
                                     <div class="d-flex gap-5">
-                                        @include('admin.pages.category.edit')
+                                        <div onclick="editData('{{ $data->category_id }}','{{ $data->category_name }}')">
+                                            <button type="submit" class="btn "><i
+                                                    class="fa-solid fa-pen-to-square text-primary fs-2"
+                                                    data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                            </button>
+                                        </div>
+
 
                                         <form action="/admin/category/delete" method="post">
                                             <input type="hidden" name="category_id" value="{{ $data->category_id }}">
@@ -54,4 +60,15 @@
             </div>
         </div>
     </div>
+    @include('admin.pages.category.edit')
+
+    <script>
+        function editData(category_id, category_name) {
+            console.log(category_id);
+            console.log(category_name);
+            document.getElementById('editcategoryId').value = category_id;
+            document.getElementById('editCategoryName').value = category_name;
+        }
+    </script>
+
 @endsection

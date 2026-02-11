@@ -32,4 +32,12 @@ class CategoryController extends Controller
         return redirect('/admin/category');
 
     }
+
+    public function edit(Request $request)
+    {
+        $category = tbl_category::find($request->category_id);
+        $category->category_name = $request->categoryName;
+        $category->save();
+        return redirect('/admin/category');
+    }
 }

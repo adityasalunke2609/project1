@@ -27,11 +27,12 @@
                                 <td>{{ $data->unit_id }}</td>
                                 <td>{{ $data->unit_name }}</td>
                                 <td>
-
                                     <div class="d-flex gap-5">
-
                                         <div onclick="editData('{{ $data->unit_id }}','{{ $data->unit_name }}')">
-                                            @include('admin.pages.unit.edit')
+                                            <button type="submit" class="btn "><i
+                                                    class="fa-solid fa-pen-to-square text-primary fs-4"
+                                                    data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                            </button>
                                         </div>
 
                                         <form action="/admin/unit/delete" method="post">
@@ -52,12 +53,14 @@
         </div>
     </div>
 
+    @include('admin.pages.unit.edit')
+
     <script>
         function editData(unit_id, unit_name) {
             console.log(unit_id);
             console.log(unit_name);
-            document.getElementById('editUnitId').value=unit_id;
-            document.getElementById('editUnitName').value=unit_name;
+            document.getElementById('editUnitId').value = unit_id;
+            document.getElementById('editUnitName').value = unit_name;
         }
     </script>
 @endsection

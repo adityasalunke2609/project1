@@ -31,17 +31,22 @@
                                 <td>
                                     <div class="d-flex gap-5">
 
-                                        <div class="btn"
-                                            onclick="editData('{{ $item->id }}','{{ $item->tax_name }}')">
-                                            @include('admin.pages.tax.edit')
+                                        <div onclick="editData('{{ $data->tax_id }}','{{ $data->tax_name }}','{{ $data->tax_percentage }}')">
+                                            <button type="submit" class="btn "><i
+                                                    class="fa-solid fa-pen-to-square text-primary fs-4"
+                                                    data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                            </button>
                                         </div>
 
 
-                                        <form action="/admin/category/delete" method="post">
+                                        <form action="/admin/tax/delete" method="post">
+                                            @csrf
+                                            <input type="hidden" name="tax_id" value="{{ $data->tax_id }}">
                                             <button type="submit" class="btn">
                                                 <i class="fas fa-trash-alt text-danger fs-4"></i>
                                             </button>
                                         </form>
+
                                     </div>
                                 </td>
                             </tr>
@@ -52,4 +57,16 @@
             </div>
         </div>
     </div>
+    @include('admin.pages.tax.edit')
+
+    <script>
+        function editData(tax_id, tax_name,tax_percentage) {
+            console.log(tax_id);
+            console.log(tax_name);
+            console.log(tax_percentage);
+            document.getElementById('editTaxId').value = tax_id;
+            document.getElementById('editTaxName').value = tax_name;
+            document.getElementById('editTaxPercentege').value = tax_percentage;
+        }
+    </script>
 @endsection

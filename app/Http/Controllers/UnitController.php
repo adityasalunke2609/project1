@@ -35,9 +35,9 @@ class UnitController extends Controller
     {
         $unit = tbl_unit::find($request->unit_id);
         $unit->unit_name = $request->unitName;
-
         $unit->save();
-
         return redirect('/admin/unit');
     }
 }
+
+

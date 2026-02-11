@@ -1,6 +1,3 @@
-<button type="submit" class="btn "><i class="fa-solid fa-pen-to-square text-primary fs-4" data-bs-toggle="modal"
-        data-bs-target="#editModal"></i></button>
-
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered ">
