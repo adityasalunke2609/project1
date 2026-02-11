@@ -30,8 +30,17 @@
                                 <td>{{ $data->category_name }}</td>
                                 <td>{{ $data->subcategory_name }}</td>
                                 <td><img src="{{ asset('') }}"></td>
-                                <td> @include('admin.pages.subcategory.edit')
-                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                <td>
+                                    <div class="d-flex gap-5">
+                                        @include('admin.pages.subcategory.edit')
+                                        <form action="/admin/subcategory/delete" method="post">
+                                            <input type="hidden" name="subCategory_id" value="{{ $data->subCategory_id }}">
+                                            @csrf
+                                            <button type="submit" class="btn">
+                                                <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

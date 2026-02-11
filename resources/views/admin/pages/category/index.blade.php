@@ -32,9 +32,19 @@
                                 <td>{{ $data->category_name }}</td>
                                 <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
                                 <td><img src="{{ asset('admin/img/chadengle.jpg') }}"> </td>
+
                                 <td>
-                                    @include('admin.pages.category.edit')
-                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                    <div class="d-flex gap-5">
+                                        @include('admin.pages.category.edit')
+
+                                        <form action="/admin/category/delete" method="post">
+                                            <input type="hidden" name="category_id" value="{{ $data->category_id }}">
+                                            @csrf
+                                            <button type="submit" class="btn">
+                                                <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

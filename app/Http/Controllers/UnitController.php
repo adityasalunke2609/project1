@@ -30,4 +30,14 @@ class UnitController extends Controller
 
         return redirect('/admin/unit');
     }
+
+    public function edit(Request $request)
+    {
+        $unit = tbl_unit::find($request->unit_id);
+        $unit->unit_name = $request->unitName;
+
+        $unit->save();
+
+        return redirect('/admin/unit');
+    }
 }

@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class tbl_subcategory extends Model
 {
-     protected $table = "tbl_subcategory";
+    protected $table = 'tbl_subcategory';
+
+    protected $primaryKey = 'subCategory_id';
 }

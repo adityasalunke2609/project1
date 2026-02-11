@@ -29,8 +29,20 @@
                                 <td>{{ $data->tax_name }}</td>
                                 <td>{{ $data->tax_percentage }}</td>
                                 <td>
-                                    @include('admin.pages.tax.edit')
-                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                    <div class="d-flex gap-5">
+
+                                        <div class="btn"
+                                            onclick="editData('{{ $item->id }}','{{ $item->tax_name }}')">
+                                            @include('admin.pages.tax.edit')
+                                        </div>
+
+
+                                        <form action="/admin/category/delete" method="post">
+                                            <button type="submit" class="btn">
+                                                <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

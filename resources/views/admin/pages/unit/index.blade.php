@@ -27,9 +27,12 @@
                                 <td>{{ $data->unit_id }}</td>
                                 <td>{{ $data->unit_name }}</td>
                                 <td>
+
                                     <div class="d-flex gap-5">
 
-                                        @include('admin.pages.unit.edit')
+                                        <div onclick="editData('{{ $data->unit_id }}','{{ $data->unit_name }}')">
+                                            @include('admin.pages.unit.edit')
+                                        </div>
 
                                         <form action="/admin/unit/delete" method="post">
                                             @csrf
@@ -38,6 +41,7 @@
                                                 <i class="fas fa-trash-alt text-danger fs-4"></i>
                                             </button>
                                         </form>
+
                                     </div>
                                 </td>
                             </tr>
@@ -47,4 +51,13 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function editData(unit_id, unit_name) {
+            console.log(unit_id);
+            console.log(unit_name);
+            document.getElementById('editUnitId').value=unit_id;
+            document.getElementById('editUnitName').value=unit_name;
+        }
+    </script>
 @endsection
