@@ -8,5 +8,5 @@ class tbl_subcategory extends Model
 {
     protected $table = 'tbl_subcategory';
 
-    protected $primaryKey = 'subCategory_id';
+    protected $primaryKey = 'subcategory_id';
 }

@@ -29,9 +29,8 @@ class SubCategoryController extends Controller
 
     public function remove(Request $request)
     {
-        $subcategory = tbl_subcategory::find($request->subCategory_id);
+        $subcategory = tbl_subcategory::find($request->subcategory_id);
         $subcategory->delete();
-
         return redirect('/admin/subcategory');
     }
 }

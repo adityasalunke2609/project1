@@ -10,10 +10,10 @@
                         @include('admin.pages.product.create')
                     </div>
                 </div>
-                
+
             </div>
             <div class="card-body">
-              <table class="table table-head-bg-secondary">
+                <table class="table table-head-bg-secondary">
                     <thead>
                         <tr>
                             <th scope="col">SR.NO</th>
@@ -35,8 +35,26 @@
                                 <td>{{ $data->product_subcaterogy_id }}</td>
                                 <td>Active</td>
                                 <td>
-                                    @include('admin.pages.product.edit')
-                                    <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                    <div class="d-flex gap-5">
+                                        <div
+                                            onclick="editData('{{ $data->product_id }}','{{ $data->product_tax }}','{{ $data->product_caterogy_id }}','{{ $data->product_subcaterogy_id }}')">
+                                            <button type="submit" class="btn "><i
+                                                    class="fa-solid fa-pen-to-square text-primary fs-2"
+                                                    data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                                            </button>
+                                        </div>
+
+
+
+                                        <form action="/admin/product/delete" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                            <button type="submit" class="btn">
+                                                <i class="fas fa-trash-alt text-danger fs-4"></i>
+                                            </button>
+                                        </form>
+
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -45,4 +63,19 @@
             </div>
         </div>
     </div>
+
+    @include('admin.pages.product.edit')
+
+    <script>
+        function editData(product_id, product_tax, product_caterogy_id, product_subcaterogy_id) {
+            console.log(product_id);
+            console.log(product_tax);
+            console.log(product_caterogy_id);
+            console.log(product_subcaterogy_id);
+            document.getElementById('editcategoryId').value = product_id;
+            document.getElementById('editCategoryName').value = product_tax;
+            document.getElementById('editCategoryName').value = product_caterogy_id;
+            document.getElementById('editCategoryName').value = product_subcaterogy_id;
+        }
+    </script>
 @endsection

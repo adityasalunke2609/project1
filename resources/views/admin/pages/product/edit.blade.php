@@ -1,8 +1,3 @@
-<i class="fa-solid fa-pen-to-square text-primary fs-4" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalXlLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -14,59 +9,68 @@
             <div class="modal-body">
 
                 <div class="row mx-2" style="border:1px solid black">
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="name">English Name</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="englishName" name="productName" placeholder="English Name"
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">HSN Code</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="categoryName" placeholder="******"
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Product Weight</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="categoryName" 
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Category</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="categoryName" 
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name"> Sub Category</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="categoryName" 
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Tax %</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="productTax" 
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="name">Unit</label>
-                            <input type="text" id="name" name="categoryName" placeholder="Category Name"
+                            <input type="text" id="name" name="categoryName" 
                                 class="form-control">
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </div>
+
                 </div>
 
             </div>
