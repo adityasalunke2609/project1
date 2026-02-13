@@ -77,8 +77,8 @@
                             </div>
                         </div>
                         <div>
-                            <div class="card-body" style="background-color:rgb(33, 185, 185)">
-                                <table class="table table-bordered">
+                            <div class="card-body" style="background-color:rgb(214, 243, 243)">
+                                <table class="table table-bordered ">
                                     <thead>
                                         <tr>
                                             <th>Barcode</th>

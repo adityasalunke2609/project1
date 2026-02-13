@@ -36,7 +36,7 @@
                                     <span class="sub-item">Dashboard 1</span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul>   
                     </div>
                 </li>
 

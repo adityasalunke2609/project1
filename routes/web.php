@@ -6,19 +6,25 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\websiteController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [adminController::class, 'dashboard']);
 
+
+Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    
+Route::get('/', [adminController::class, 'dashboard']);
 
 // for category
 Route::get('/admin/category', [CategoryController::class, 'index']);
 Route::post('/admin/category', [CategoryController::class, 'store']);
 Route::post('/admin/category/delete', [CategoryController::class, 'remove']);
-Route::post('/admin/category/edit', [CategoryController::class, 'edit']);
+Route::post('/admin/category/edit', [CategoryController::class,'edit']);
 
 
 // for subcategory
+
 Route::get('/admin/subcategory', [SubCategoryController::class, 'index']);
 Route::post('/admin/subcategory', [SubCategoryController::class, 'store']);
 Route::post('/admin/subcategory/delete', [SubCategoryController::class, 'remove']);
@@ -39,7 +45,20 @@ Route::post('/admin/unit/edit', [UnitController::class, 'edit']);
 
 
 // for product
+
 Route::get('/admin/product', [ProductController::class, 'index']);
 Route::post('/admin/product', [ProductController::class, 'store']);
 Route::post('/admin/product/delete', [ProductController::class, 'remove']);
 Route::post('/admin/product/edit', [ProductController::class, 'edit']);
+
+} );
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
+
+
+
+
+
+// for user website
+Route::post('/website', [websiteController::class, 'dashboard']);
+
+
