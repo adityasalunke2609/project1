@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_category;
 use App\Models\tbl_product;
+use App\Models\tbl_subcategory;
+use App\Models\tbl_tax;
+use App\Models\tbl_unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -10,8 +14,12 @@ class ProductController extends Controller
     public function index()
     {
         $product = tbl_product::all();
+        $category =tbl_category::all();
+        $subcategory =tbl_subcategory::all();
+        $tax=tbl_tax::all();
+        $unit=tbl_unit::all();
 
-        return view('admin.pages.product.index', compact('product'));
+        return view('admin.pages.product.index', compact('product','category','subcategory','tax','unit'));
     }
 
     public function store(Request $request)
