@@ -24,7 +24,6 @@ Route::post('/admin/category/edit', [CategoryController::class,'edit']);
 
 
 // for subcategory
-
 Route::get('/admin/subcategory', [SubCategoryController::class, 'index']);
 Route::post('/admin/subcategory', [SubCategoryController::class, 'store']);
 Route::post('/admin/subcategory/delete', [SubCategoryController::class, 'remove']);
@@ -45,7 +44,6 @@ Route::post('/admin/unit/edit', [UnitController::class, 'edit']);
 
 
 // for product
-
 Route::get('/admin/product', [ProductController::class, 'index']);
 Route::post('/admin/product', [ProductController::class, 'store']);
 Route::post('/admin/product/delete', [ProductController::class, 'remove']);
@@ -58,7 +56,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 
 
-// for user website
-Route::post('/website', [websiteController::class, 'dashboard']);
-
+//for website
+Route::get('/master',[websiteController::class,'index']);
 

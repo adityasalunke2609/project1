@@ -27,10 +27,11 @@
                         @foreach ($subcategory as $data)
                             <tr>
                                 <td>{{ $data->subcategory_id }}</td>
-                                <td>{{ $data->categoty_id}}</td>
+                                <td>{{ $data->categoty_id }}</td>
                                 <td>{{ $data->subcategory_name }}</td>
-                                <td><img src="{{ asset('') }}"></td>
-                                
+                                <td><img src="{{ asset('uploads/subcategory/' . $data->subcategory_image) }}" height="100">
+                                </td>
+
                                 <td>
                                     <div class="d-flex gap-5">
                                         @include('admin.pages.subcategory.edit')

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
+
     public function index()
     {
         $subcategory = tbl_subcategory::all();
@@ -18,10 +19,19 @@ class SubCategoryController extends Controller
 
     public function store(Request $request)
     {
+     
         $subcategory = new tbl_subcategory;
+        $path = public_path('uploads/subcategory');
+        $subCategoryImage=$request->file('SubCategoryImage');
+        $subCategoryImageName="";
+        if($subCategoryImage){
+            $subCategoryImageName= time()."subCategoryImage.png";
+            $subCategoryImage->move($path,$subCategoryImageName);
+        }
+
         $subcategory->subcategory_name = $request->SubCategoryName;
         $subcategory->categoty_id = $request->categoryName;
-        $subcategory->subcategory_image = $request->SubCategoryImage;
+        $subcategory->subcategory_image = $subCategoryImageName;
         $subcategory->save();
 
         return redirect('/admin/subcategory');

@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class websiteController extends Controller
 {
-   function dashboard()
+   function index()
     {
-        return view("website.pages.index");
+        return view('website.pages.index');
     }
 }

@@ -30,8 +30,8 @@
                             <tr>
                                 <td>{{ $data->category_id }}</td>
                                 <td>{{ $data->category_name }}</td>
-                                <td><img src="{{ asset('admin/img/arashmil.jpg') }}"> </td>
-                                <td><img src="{{ asset('admin/img/chadengle.jpg') }}"> </td>
+                                <td><img src="{{ asset('uploads/category/'.$data->category_image) }}" height="100"> </td>
+                                <td><img src="{{ asset('uploads/category/'.$data->category_banner_image) }}" height="100"> </td>
 
                                 <td>
                                     <div class="d-flex gap-5">
