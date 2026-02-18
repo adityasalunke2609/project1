@@ -35,7 +35,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="hsn">HSN Code</label>
-                                <input type="text" id="hsn" name="hsn" placeholder="HSN Code"
+                                <input type="text" id="hsn" name="productHSNcode" placeholder="HSN Code"
                                     class="form-control">
                             </div>
                         </div>
@@ -48,10 +48,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group ">
-                                <label for="categoryId">Category</label>
+                                <label for="productCategoryName">Category</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="categoryId">
+                                    name="productCategoryName">
 
                                     @foreach ($category as $data)
                                         <option value="{{ $data->category_id }}">{{ $data->category_name }}</option>
@@ -66,7 +66,7 @@
                                 <label for="subCategoryId">Sub Category</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="subCategoryId">
+                                    name="productSubCategoryName">
                                     @foreach ($subcategory as $data)
                                         <option value="{{ $data->subcategory_id }}">{{ $data->subcategory_name }}
                                         </option>
@@ -80,7 +80,7 @@
                                 <label for="tax">Tax %</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="tax">
+                                    name="productTax">
                                     @foreach ($tax as $data)
                                         <option value="{{ $data->tax_id }}">{{ $data->tax_name }}</option>
                                     @endforeach
@@ -93,7 +93,7 @@
                                 <label for="unitId">Unit</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="unitId">
+                                    name="productUnit">
                                     @foreach ($unit as $data)
                                         <option value="{{ $data->unit_id }}">{{ $data->unit_name }}</option>
                                     @endforeach

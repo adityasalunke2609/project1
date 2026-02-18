@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         $product = new tbl_product;
         $product->product_name = $request->productName;
-        $product->product_hsncode = $request->hsnCode;
+        $product->product_hsncode = $request->productHSNcode;
         $product->product_weight = $request->productWeight;
         $product->product_caterogy_id = $request->productCategoryName;
         $product->product_subcaterogy_id = $request->productSubCategoryName;

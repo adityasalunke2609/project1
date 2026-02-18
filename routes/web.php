@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/subcategory/delete', [SubCategoryController::class, 'remove']);
 
     // for tax
-    Route::get('/admin/tax', [TaxController::class, 'index']);
+    Route::get('/admin/tax', action: [TaxController::class, 'index']);
     Route::post('/admin/tax', [TaxController::class, 'store']);
     Route::post('/admin/tax/delete', [TaxController::class, 'remove']);
     Route::post('/admin/tax/edit', [TaxController::class, 'edit']);
@@ -45,6 +45,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+route::get('/logout',function(){
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
 
 
 // for website routes

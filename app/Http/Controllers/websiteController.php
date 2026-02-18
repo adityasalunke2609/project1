@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_product;
+
 class websiteController extends Controller
 {
     public function index()
     {
-        return view('website.pages.index');
+        $products = tbl_product::all();
+        return view('website.pages.index', compact('products'));
     }
+    
 
     public function shop()
     {

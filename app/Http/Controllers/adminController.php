@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class adminController extends Controller
 {
-   function dashboard()
+    public function dashboard()
     {
-        return view("admin.pages.index");
+        if (Auth()->user()->user_type == '2') {
+            return redirect('/');
+        } else {
+            return view('admin.pages.index');
+        }
     }
 }

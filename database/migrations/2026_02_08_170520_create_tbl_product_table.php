@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('product_distributor');
             $table->string('product_op_qty');
             $table->string('product_op_value');
-            $table->timestamps();
+            $table->string('product_image');
         });
     }
 
