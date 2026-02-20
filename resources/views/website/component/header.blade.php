@@ -57,7 +57,8 @@
 
                             <div class="header__top__hover">
                                 <span> <img src="{{ asset('admin/img/chadengle.jpg') }}" alt="..."
-                                    class="avatar-img rounded-circle" height="20" /> profile <i class="arrow_carrot-down"></i></span>
+                                        class="avatar-img rounded-circle" height="20" /> profile <i
+                                        class="arrow_carrot-down"></i></span>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
@@ -75,9 +76,7 @@
                                         </li>
                                         <li>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">
-                                              @include('website.pages.editprofile')
-                                            </a>
+                                            <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>
 
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{{ route('logout') }}"

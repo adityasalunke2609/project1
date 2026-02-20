@@ -13,11 +13,11 @@
                     </ul>
                 </div>
             </div>
-            <div class="row product__filter">
+                <div class="row product__filter">
                 @foreach ($products as $data)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        <div class="product__item">
-                            <div class="product__item__pic "
+                        <div class="product__item ">
+                            <div class="product__item__pic set-bg"
                                 data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                 <span class="label">New</span>
                                 <ul class="product__hover">

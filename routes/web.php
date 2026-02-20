@@ -45,12 +45,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-
-route::get('/logout',function(){
+route::get('/logout', function () {
     Auth::logout();
+
     return redirect('/login');
 })->name('logout');
-
 
 // for website routes
 Route::get('/', [websiteController::class, 'index']);
@@ -62,3 +61,9 @@ Route::get('/blogDetails', [websiteController::class, 'blog_details']);
 Route::get('/shopDetails', [websiteController::class, 'shop_details']);
 Route::get('/shoppingCart', [websiteController::class, 'shopping_cart']);
 Route::get('/checkOut', [websiteController::class, 'checkOut']);
+
+Route::get('/editprofile', [websiteController::class, 'editprofile'])
+    ->name('editprofile');
+
+Route::post('/updateprofile', [websiteController::class, 'updateprofile'])
+    ->name('updateprofile');

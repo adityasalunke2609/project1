@@ -30,10 +30,9 @@ class SubCategoryController extends Controller
         }
 
         $subcategory->subcategory_name = $request->SubCategoryName;
-        $subcategory->categoty_id = $request->categoryName;
+        $subcategory->category_id = $request->categoryName;
         $subcategory->subcategory_image = $subCategoryImageName;
         $subcategory->save();
-
         return redirect('/admin/subcategory');
     }
 

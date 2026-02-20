@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_subcategory', function (Blueprint $table) {
            $table->integer("subcategory_id")->autoIncrement();
-            $table->string("categoty_id");
+            $table->string("category_id");
             $table->string("subcategory_name");
             $table->string("subcategory_image");
             $table->timestamps();

@@ -11,7 +11,7 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content border-primary shadow-sm rounded">
 
-            <form action="/admin/subcategory" method="post">
+            <form action="/admin/subcategory" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="modal-header">
