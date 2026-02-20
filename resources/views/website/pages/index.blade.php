@@ -17,8 +17,8 @@
                 @foreach ($products as $data)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('website/img/product/product-1.jpg') }}">
+                            <div class="product__item__pic "
+                                data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                 <span class="label">New</span>
                                 <ul class="product__hover">
                                     <li><a href="#"><img src="{{ asset('website/img/icon/heart.png') }}"
@@ -31,7 +31,7 @@
                                 </ul>
                             </div>
                             <div class="product__item__text">
-                                <h6>Piqué Biker Jacket</h6>
+                                <h6>{{ $data->product_name }}</h6>
                                 <a href="#" class="add-cart">+ Add To Cart</a>
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_category;
 use App\Models\tbl_product;
+use App\Models\tbl_subcategory;
 
 class websiteController extends Controller
 {
@@ -15,7 +17,10 @@ class websiteController extends Controller
 
     public function shop()
     {
-        return View('website.pages.shop');
+         $products = tbl_product::all();
+        $category = tbl_category::all();
+        $subcategory = tbl_subcategory::all();
+        return View('website.pages.shop', compact('products', 'category', 'subcategory'));
     }
 
     public function blog()

@@ -22,8 +22,10 @@
 
                     </div>
                 </div>
+
                 <form action="/admin/product" method="post" enctype="multipart/form-data">
                     @csrf
+                    
                     <div class="row mx-2" style="border:1px solid green">
                         <div class="col-md-6">
                             <div class="form-group">

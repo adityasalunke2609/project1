@@ -25,6 +25,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new tbl_product;
+        $path =public_path('uploads/products');
+        $productImage = $request->file('productImage');
+        $productImageName = "";
+        if ($productImage) {
+            $productImageName = time() . '_' . $productImage->getClientOriginalName();
+            $productImage->move($path, $productImageName);
+        }
         $product->product_name = $request->productName;
         $product->product_hsncode = $request->productHSNcode;
         $product->product_weight = $request->productWeight;
@@ -42,6 +49,7 @@ class ProductController extends Controller
         $product->product_distributor = $request->distributor_price;
         $product->product_op_qty = $request->opening_qty;
         $product->product_op_value = $request->opening_value;
+        $product->product_image = $productImageName;
         $product->save();
 
         return redirect('/admin/product');

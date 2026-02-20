@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('product_op_qty');
             $table->string('product_op_value');
             $table->string('product_image');
+            $table->timestamps();
         });
     }
 
