@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
 use App\Models\tbl_product;
 use App\Models\tbl_subcategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class websiteController extends Controller
 {
     public function index()
     {
         $products = tbl_product::all();
+
         return view('website.pages.index', compact('products'));
     }
 
@@ -20,6 +23,7 @@ class websiteController extends Controller
         $products = tbl_product::all();
         $category = tbl_category::all();
         $subcategory = tbl_subcategory::all();
+
         return View('website.pages.shop', compact('products', 'category', 'subcategory'));
     }
 
@@ -40,12 +44,24 @@ class websiteController extends Controller
 
     public function shop_details()
     {
-        return View('website.pages.shop_details');
+        $products = tbl_product::all();
+
+        return View('website.pages.shop_details', compact('products'));
     }
 
     public function shopping_cart()
     {
-        return View('website.pages.shopping_cart');
+        $cart = tbl_addtocart::where('user_id', Auth::user()->id)->get();
+
+        return View('website.pages.shopping_cart', compact('cart'));
+    }
+
+    public function removeFromCart(Request $request)
+    {
+
+        $cart = tbl_addtocart::find($request->cartID);
+        $cart->delete();
+        return redirect('/shoppingCart');
     }
 
     public function checkout()
@@ -61,6 +77,7 @@ class websiteController extends Controller
     public function editprofile()
     {
         $user = auth()->user();
+
         return View('website.pages.editprofile', compact('user'));
     }
 
@@ -76,6 +93,17 @@ class websiteController extends Controller
         $user->email = request('email');
         $user->save();
 
-        return redirect()->route('editprofile')->with('success', 'Profile updated successfully.');
+        return redirect('/')->with('success', 'Profile updated successfully.');
+    }
+
+    public function addToCart(Request $request)
+    {
+
+        $cart = new tbl_addtocart;
+        $cart->user_id = $request->input('user_id');
+        $cart->product_id = $request->input('product_id');
+        $cart->save();
+
+        return redirect('/shoppingCart');
     }
 }

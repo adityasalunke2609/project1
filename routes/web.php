@@ -51,6 +51,7 @@ route::get('/logout', function () {
     return redirect('/login');
 })->name('logout');
 
+
 // for website routes
 Route::get('/', [websiteController::class, 'index']);
 Route::get('/shop', [websiteController::class, 'shop']);
@@ -67,3 +68,6 @@ Route::get('/editprofile', [websiteController::class, 'editprofile'])
 
 Route::post('/updateprofile', [websiteController::class, 'updateprofile'])
     ->name('updateprofile');
+    
+Route::post('/add-to-cart', [websiteController::class, 'addToCart']);
+Route::post('/remove-from-cart', [websiteController::class, 'removeFromCart']);

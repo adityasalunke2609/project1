@@ -32,7 +32,17 @@
                             </div>
                             <div class="product__item__text">
                                 <h6>{{ $data->product_name }}</h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+                                
+                                <form action="/add-to-cart" method="post">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+
+                                    <button type="submit" class="add-cart">+ Add To Cart</button>
+                                </form>
+
+                                <a href="/add-to-cart/{{ $data->product_id }}" class="add-cart">+ Add To Cart</a>
+
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
@@ -40,7 +50,7 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5>$67.24</h5>
+                                <h5>${{ $data->product_price }} </h5>
                                 <div class="product__color__select">
                                     <label for="pc-1">
                                         <input type="radio" id="pc-1">

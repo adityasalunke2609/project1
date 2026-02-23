@@ -74,6 +74,7 @@
                                                 </div>
                                             </div>
                                         </li>
+                                        
                                         <li>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>

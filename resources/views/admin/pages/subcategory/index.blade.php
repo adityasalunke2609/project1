@@ -27,7 +27,7 @@
                         @foreach ($subcategory as $data)
                             <tr>
                                 <td>{{ $data->subcategory_id }}</td>
-                                <td>{{ $data->category_id }}</td>
+                                <td>{{ $data->category_name }}</td>
                                 <td>{{ $data->subcategory_name }}</td>
                                 <td><img src="{{ asset('uploads/subcategory/' . $data->subcategory_image) }}" height="100">
                                 </td>

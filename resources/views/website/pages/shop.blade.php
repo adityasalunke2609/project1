@@ -1,6 +1,5 @@
 @extends('website.layout.master')
 @section('content')
-
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
         <div class="container">
@@ -22,7 +21,7 @@
     <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
-            <div class="row">
+                <div class="row">
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
@@ -43,7 +42,7 @@
                                                 <ul class="nice-scroll">
                                                     @foreach ($category as $data)
                                                         <li><a href="#">{{ $data->category_name }}</a></li>
-                                                    @endforeach    
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -59,7 +58,7 @@
                                                 <ul class="nice-scroll">
                                                     @foreach ($subcategory as $data)
                                                         <li><a href="#">{{ $data->subcategory_name }}</a></li>
-                                                    @endforeach    
+                                                    @endforeach
                                                 </ul>
                                             </div>
                                         </div>
@@ -90,59 +89,54 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        @foreach ($products as $data )
-                          <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt="">
-                                                <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>{{ $data->product_name }}</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                    <div class="row g-4">
+                        @foreach ($products as $data)
+                            <div class="col-lg-4 col-md-6 col-sm-12">
+
+                                <div class="card h-100 shadow-lg border-0">
+
+                                    <img src="{{ asset('uploads/products/' . $data->product_image) }}" class="card-img-top"
+                                        style="height:250px; object-fit:cover;" alt="">
+
+                                    <div class="card-body text-center">
+
+                                        <h6 class="card-title fw-bold">
+                                            {{ $data->product_name }}
+                                        </h6>
+
+                                        <p class="text-danger fw-semibold mb-2">
+                                            ₹ {{ $data->product_price }}
+                                        </p>
+
+                                        <div class="mb-2">
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-warning"></i>
+                                            <i class="fa fa-star text-muted"></i>
+                                        </div>
+
+                                        <a href="{{ url('/shoppingCart/' . $data->id) }}"
+                                            class="btn btn-dark btn-sm px-4 rounded-pill">
+                                            + Add To Cart
+                                        </a>
+
                                     </div>
-                                    <h5>${{ $data->product_price }}</h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-4">
-                                            <input type="radio" id="pc-4">
-                                        </label>
-                                        <label class="active black" for="pc-5">
-                                            <input type="radio" id="pc-5">
-                                        </label>
-                                        <label class="grey" for="pc-6">
-                                            <input type="radio" id="pc-6">
-                                        </label>
-                                    </div>
+
                                 </div>
+
                             </div>
-                        </div>
                         @endforeach
-                      
-                      
                     </div>
 
-
-
-
-                    
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
-                                <a class="active" href="#">1</a>
-                                <a href="#">2</a>
+                                <a href="#">1</a>
+                                <a class="active" href="#">2</a>
                                 <a href="#">3</a>
+                                <a href="#">4</a>
+                                <a href="#">5</a>
                                 <span>...</span>
                                 <a href="#">21</a>
                             </div>

@@ -30,9 +30,9 @@
                             <tr>
                                 <td>{{ $data->product_id }}</td>
                                 <td><img src="{{ asset('uploads/products/' . $data->product_image) }}" width="100" height="100"> </td>
-                                <td>{{ $data->product_tax }}</td>
-                                <td>{{ $data->product_caterogy_id }}</td>
-                                <td>{{ $data->product_subcaterogy_id }}</td>
+                                <td>{{ $data->tax_name }}</td>
+                                <td>{{ $data->category_name }}</td>
+                                <td>{{ $data->subcategory_name }}</td>
                                 <td>Active</td>
                                 <td>
                                     <div class="d-flex gap-5">
