@@ -19,17 +19,28 @@
                         <div class="product__item ">
                             <div class="product__item__pic set-bg"
                                 data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
-                                <span class="label">New</span>
+                                <span class="label">New</span>      
                                 <ul class="product__hover">
-                                    <li><a href="#"><img src="{{ asset('website/img/icon/heart.png') }}"
-                                                alt=""></a></li>
+
+                                    <form action="/add-to-wishlist" method="post">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+
+                                        <button type="submit"><img src="{{ asset('website/img/icon/heart.png') }}"
+                                                alt=""></button>    
+                                    </form>        
+                                    
+
                                     <li><a href="#"><img src="{{ asset('website/img/icon/compare.png') }}"
                                                 alt="">
                                             <span>Compare</span></a></li>
                                     <li><a href="#"><img src="{{ asset('website/img/icon/search.png') }}"
                                                 alt=""></a></li>
                                 </ul>
-                            </div>
+                            </div>      
+                            
+
                             <div class="product__item__text">
                                 <h6>{{ $data->product_name }}</h6>
                                 
@@ -41,7 +52,7 @@
                                     <button type="submit" class="add-cart">+ Add To Cart</button>
                                 </form>
 
-                                <a href="/add-to-cart/{{ $data->product_id }}" class="add-cart">+ Add To Cart</a>
+                                <a href="/add-to-cart/{{ $data->product_id }}" class="add-cart"></a>
 
                                 <div class="rating">
                                     <i class="fa fa-star-o"></i>

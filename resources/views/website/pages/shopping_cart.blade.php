@@ -31,7 +31,7 @@
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th></th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,12 +40,12 @@
                                     <tr>
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="{{ asset('uploads/category/1771048372banner.png') }}"
+                                                <img src="{{asset('uploads/products/'.$data->product_image) }} " width="200"
                                                     alt="">
                                             </div>
                                             <div class="product__cart__item__text">
-                                                <h6>xyz</h6>
-                                                <h5>$200</h5>
+                                                <h6>{{ $data->product_name }}</h6>
+                                                <h5>$2000</h5>
                                             </div>
                                         </td>
                                         <td class="quantity__item">
@@ -55,15 +55,17 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="cart__price">200</td>
 
-                                        <form action="/remove-from-cart/" method="post">
+                                        <td class="cart__price">$000</td>
+
+
+                                        <form action="{{ url('/remove-from-cart') }}" method="POST">
                                             @csrf
-                                            <input type="hidden" name="cardID" value="{{ $data->cart_id }}">
-                                            <td class="cart__close"><button type="submit"><i
-                                                        class="fa fa-close"></i></button></td>
+                                            <input type="hidden" name="cartID" value="{{ $data->cart_id }}">
+                                            <td class="cart__close"><button type="submit" class="border-0">
+                                                    <i class="fa fa-close"></i>
+                                                </button></td>
                                         </form>
-
                                     </tr>
                                 @endforeach
                             </tbody>

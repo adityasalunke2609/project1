@@ -6,8 +6,10 @@ use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
 use App\Models\tbl_product;
 use App\Models\tbl_subcategory;
+use App\Models\tbl_wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class websiteController extends Controller
 {
@@ -51,17 +53,50 @@ class websiteController extends Controller
 
     public function shopping_cart()
     {
-        $cart = tbl_addtocart::where('user_id', Auth::user()->id)->get();
-
+        $cart = DB::table('tbl_addtocart')
+            ->join('tbl_product', 'tbl_addtocart.product_id', '=', 'tbl_product.product_id')
+            ->select('tbl_addtocart.cart_id as cart_id', 'tbl_product.*')
+            ->where('tbl_addtocart.user_id', auth()->id())
+            ->get();
         return View('website.pages.shopping_cart', compact('cart'));
     }
-
     public function removeFromCart(Request $request)
     {
 
         $cart = tbl_addtocart::find($request->cartID);
-        $cart->delete();
+        if ($cart) {
+            $cart->delete();
+        }
         return redirect('/shoppingCart');
+    }
+
+    public function addToCart(Request $request)
+    {
+
+        $cart = new tbl_addtocart;
+        $cart->user_id = $request->input('user_id');
+        $cart->product_id = $request->input('product_id');
+        $cart->save();
+
+        return redirect('/shoppingCart');
+
+    }
+
+    public function wishlist()
+    {
+        
+        $wishlist = tbl_wishlist::where('wishlist_user_id', auth()->id())->get();
+        return View('website.pages.wishlist', compact('wishlist'));
+    }
+
+    function addtoWishlist(Request $request)
+    {
+        $wishlist = new tbl_wishlist;
+        $wishlist->wishlist_user_id = $request->input('user_id');
+        $wishlist->wishlist_product_id = $request->input('product_id');
+        $wishlist->save();
+
+        return redirect('/wishlist');
     }
 
     public function checkout()
@@ -96,14 +131,5 @@ class websiteController extends Controller
         return redirect('/')->with('success', 'Profile updated successfully.');
     }
 
-    public function addToCart(Request $request)
-    {
-
-        $cart = new tbl_addtocart;
-        $cart->user_id = $request->input('user_id');
-        $cart->product_id = $request->input('product_id');
-        $cart->save();
-
-        return redirect('/shoppingCart');
-    }
+    
 }

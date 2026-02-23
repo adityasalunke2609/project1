@@ -51,7 +51,6 @@ route::get('/logout', function () {
     return redirect('/login');
 })->name('logout');
 
-
 // for website routes
 Route::get('/', [websiteController::class, 'index']);
 Route::get('/shop', [websiteController::class, 'shop']);
@@ -61,13 +60,15 @@ Route::get('/about', [websiteController::class, 'about']);
 Route::get('/blogDetails', [websiteController::class, 'blog_details']);
 Route::get('/shopDetails', [websiteController::class, 'shop_details']);
 Route::get('/shoppingCart', [websiteController::class, 'shopping_cart']);
-Route::get('/checkOut', [websiteController::class, 'checkOut']);
+Route::get('/checkOut', [websiteController::class, 'checkOut']);    
+Route::get ('/wishlist', [websiteController::class, 'wishlist']);
 
 Route::get('/editprofile', [websiteController::class, 'editprofile'])
     ->name('editprofile');
 
 Route::post('/updateprofile', [websiteController::class, 'updateprofile'])
     ->name('updateprofile');
-    
+
 Route::post('/add-to-cart', [websiteController::class, 'addToCart']);
 Route::post('/remove-from-cart', [websiteController::class, 'removeFromCart']);
+Route::post('/add-to-wishlist', [websiteController::class, 'addtoWishlist']);
