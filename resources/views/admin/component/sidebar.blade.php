@@ -24,7 +24,7 @@
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
                 <li class="nav-item active">
-                    <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
+                    <a data-bs-toggle="collapse" href="/admin/dashboard" class="collapsed" aria-expanded="false">
                         <i class="fas fa-home"></i>
                         <p>Dashboard</p>
                         <span class="caret"></span>
@@ -32,7 +32,7 @@
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="#dashboard">
+                                <a href="/admin/dashboard">
                                     <span class="sub-item">Dashboard 1</span>
                                 </a>
                             </li>
@@ -42,14 +42,21 @@
 
                 <li class="nav-item">
                     <a href="/admin/product">
-                        <i class="fas fa-desktop"></i>
+                        <i class="fas fa-box"></i>
                         <p>Product</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/admin/order">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Order</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
-                        <i class="fas fa-layer-group"></i>
+                        <i class="fas fa-cog"></i>
                         <p>Settings</p>
                         <span class="caret"></span>
                     </a>

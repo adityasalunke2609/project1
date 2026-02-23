@@ -13,73 +13,86 @@
                     </ul>
                 </div>
             </div>
-                <div class="row product__filter">
+
+            <div class="row g-4">
                 @foreach ($products as $data)
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
-                        <div class="product__item ">
-                            <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
-                                <span class="label">New</span>      
-                                <ul class="product__hover">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
 
-                                    <form action="/add-to-wishlist" method="post">
-                                        @csrf
-                                        <input type="hidden" name="product_id" value="{{ $data->product_id }}">
-                                        <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+                        <div class="card h-80 shadow-lg border-0 mt-3 position-relative overflow-hidden">
 
-                                        <button type="submit"><img src="{{ asset('website/img/icon/heart.png') }}"
-                                                alt=""></button>    
-                                    </form>        
-                                    
+                            <!-- Image -->
+                            <div class="position-relative">
+                                <img src="{{ asset('uploads/products/' . $data->product_image) }}" class="card-img-top"
+                                    style="height:250px; object-fit:cover;" alt="">
 
-                                    <li><a href="#"><img src="{{ asset('website/img/icon/compare.png') }}"
-                                                alt="">
-                                            <span>Compare</span></a></li>
-                                    <li><a href="#"><img src="{{ asset('website/img/icon/search.png') }}"
-                                                alt=""></a></li>
+                                <!-- Icons (same type as first card) -->
+                                <ul class="list-unstyled d-flex gap-2 position-absolute top-0 end-0 m-2">
+
+                                    <!-- Wishlist -->
+                                    <li>
+                                        <form action="/add-to-wishlist" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+                                            <button type="submit" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                                <i class="fa fa-heart text-danger"></i>
+                                            </button>
+                                        </form>
+                                    </li>
+
+                                    <!-- Compare -->
+                                    <li>
+                                        <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                            <i class="fa fa-exchange"></i>
+                                        </a>
+                                    </li>
+
+                                    <!-- Search -->
+                                    <li>
+                                        <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                            <i class="fa fa-search"></i>
+                                        </a>
+                                    </li>
+
                                 </ul>
-                            </div>      
-                            
+                            </div>
 
-                            <div class="product__item__text">
-                                <h6>{{ $data->product_name }}</h6>
-                                
+                            <!-- Card Body -->
+                            <div class="card-body text-center">
+
+                                <h6 class="card-title fw-bold">
+                                    {{ $data->product_name }}
+                                </h6>
+
+                                <p class="text-danger fw-semibold mb-2">
+                                    ₹ {{ $data->product_price }}
+                                </p>
+
+                                <div class="mb-2">
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-warning"></i>
+                                    <i class="fa fa-star text-muted"></i>
+                                </div>
+
                                 <form action="/add-to-cart" method="post">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{ $data->product_id }}">
                                     <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
-
-                                    <button type="submit" class="add-cart">+ Add To Cart</button>
+                                    <button type="submit" class="btn btn-dark btn-sm px-4 rounded-pill">
+                                        + Add To Cart
+                                    </button>
                                 </form>
 
-                                <a href="/add-to-cart/{{ $data->product_id }}" class="add-cart"></a>
-
-                                <div class="rating">
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5>${{ $data->product_price }} </h5>
-                                <div class="product__color__select">
-                                    <label for="pc-1">
-                                        <input type="radio" id="pc-1">
-                                    </label>
-                                    <label class="active black" for="pc-2">
-                                        <input type="radio" id="pc-2">
-                                    </label>
-                                    <label class="grey" for="pc-3">
-                                        <input type="radio" id="pc-3">
-                                    </label>
-                                </div>
                             </div>
+
                         </div>
                     </div>
                 @endforeach
             </div>
-        </div>
     </section>
+
     @include('website.component.categories')
     @include('website.component.instagram')
     @include('website.component.search')

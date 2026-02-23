@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\orderController;
 use App\Http\Controllers\websiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/product', [ProductController::class, 'store']);
     Route::post('/admin/product/delete', [ProductController::class, 'remove']);
     Route::post('/admin/product/edit', [ProductController::class, 'edit']);
+
+
+    // for order
+    Route::get('/admin/order', [orderController::class, 'index']);  
+    Route::post('/admin/order/delete', [orderController::class, 'remove']);
+    Route::post('/admin/order/edit', [orderController::class, 'edit']);
 
 });
 

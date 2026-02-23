@@ -21,7 +21,7 @@
     <!-- Shop Section Begin -->
     <section class="shop spad">
         <div class="container">
-                <div class="row">
+            <div class="row">
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
@@ -88,16 +88,52 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="row g-4">
                         @foreach ($products as $data)
                             <div class="col-lg-4 col-md-6 col-sm-12">
 
-                                <div class="card h-100 shadow-lg border-0">
+                                <div class="card h-80 shadow-lg border-0 mt-3 position-relative overflow-hidden">
 
-                                    <img src="{{ asset('uploads/products/' . $data->product_image) }}" class="card-img-top"
-                                        style="height:250px; object-fit:cover;" alt="">
+                                    <!-- Image -->
+                                    <div class="position-relative">
+                                        <img src="{{ asset('uploads/products/' . $data->product_image) }}"
+                                            class="card-img-top" style="height:250px; object-fit:cover;" alt="">
 
+                                        <!-- Icons (same type as first card) -->
+                                        <ul class="list-unstyled d-flex gap-2 position-absolute top-0 end-0 m-2">
+
+                                            <!-- Wishlist -->
+                                            <li>
+                                                <form action="/add-to-wishlist" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                                    <input type="hidden" name="user_id"
+                                                        value="{{ Auth::user()?->id ?? 0 }}">
+                                                    <button type="submit"
+                                                        class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                                        <i class="fa fa-heart text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            </li>
+
+                                            <!-- Compare -->
+                                            <li>
+                                                <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                                    <i class="fa fa-exchange"></i>
+                                                </a>
+                                            </li>
+
+                                            <!-- Search -->
+                                            <li>
+                                                <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                                    <i class="fa fa-search"></i>
+                                                </a>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <!-- Card Body -->
                                     <div class="card-body text-center">
 
                                         <h6 class="card-title fw-bold">
@@ -116,15 +152,18 @@
                                             <i class="fa fa-star text-muted"></i>
                                         </div>
 
-                                        <a href="{{ url('/shoppingCart/' . $data->id) }}"
-                                            class="btn btn-dark btn-sm px-4 rounded-pill">
-                                            + Add To Cart
-                                        </a>
+                                        <form action="/add-to-cart" method="post">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+                                            <button type="submit" class="btn btn-dark btn-sm px-4 rounded-pill">
+                                                + Add To Cart
+                                            </button>
+                                        </form>
 
                                     </div>
 
                                 </div>
-
                             </div>
                         @endforeach
                     </div>
