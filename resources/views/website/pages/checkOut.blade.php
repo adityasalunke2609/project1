@@ -142,7 +142,15 @@
                                          <span class="checkmark"></span>
                                      </label>
                                  </div>
-                                 <button type="submit" class="site-btn">PLACE ORDER</button>
+                                 <form action="{{ url('/place-order') }}" method="POST">
+                                     @csrf
+
+                                     <input type="hidden" name="total_price" value="500">
+
+                                     <button type="submit" class="primary-btn">
+                                         Place Order
+                                     </button>
+                                 </form>
                              </div>
                          </div>
                      </div>

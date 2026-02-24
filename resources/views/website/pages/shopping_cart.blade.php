@@ -40,8 +40,8 @@
                                     <tr>
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="{{asset('uploads/products/'.$data->product_image) }} " width="200"
-                                                    alt="">
+                                                <img src="{{ asset('uploads/products/' . $data->product_image) }} "
+                                                    width="200" alt="">
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6>{{ $data->product_name }}</h6>
@@ -98,7 +98,19 @@
                             <li>Subtotal <span>$ 169.50</span></li>
                             <li>Total <span>$ 169.50</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+
+                        <form action="{{ url('/checkOut') }}" method="POST">
+                            @csrf
+
+                            @foreach ($cart as $data)
+                                <input type="hidden" name="cart_ids[]" value="{{ $data->cart_id }}">
+                            @endforeach
+
+                            <button type="submit" class="primary-btn">
+                                Proceed to Checkout
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>

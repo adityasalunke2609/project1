@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\orderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\TaxController;
 use App\Http\Controllers\UnitController;
-use App\Http\Controllers\orderController;
 use App\Http\Controllers\websiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,9 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/admin/product/delete', [ProductController::class, 'remove']);
     Route::post('/admin/product/edit', [ProductController::class, 'edit']);
 
-
     // for order
-    Route::get('/admin/order', [orderController::class, 'index']);  
+    Route::get('/admin/order', [orderController::class, 'index']);
     Route::post('/admin/order/delete', [orderController::class, 'remove']);
     Route::post('/admin/order/edit', [orderController::class, 'edit']);
 
@@ -67,15 +66,22 @@ Route::get('/about', [websiteController::class, 'about']);
 Route::get('/blogDetails', [websiteController::class, 'blog_details']);
 Route::get('/shopDetails', [websiteController::class, 'shop_details']);
 Route::get('/shoppingCart', [websiteController::class, 'shopping_cart']);
-Route::get('/checkOut', [websiteController::class, 'checkOut']);    
-Route::get ('/wishlist', [websiteController::class, 'wishlist']);
+Route::get('/wishlist', [websiteController::class, 'wishlist']);
+Route::get('/order', [websiteController::class, 'order']);
 
-Route::get('/editprofile', [websiteController::class, 'editprofile'])
-    ->name('editprofile');
-
-Route::post('/updateprofile', [websiteController::class, 'updateprofile'])
-    ->name('updateprofile');
+Route::post('/checkOut', [websiteController::class, 'checkOut']);
 
 Route::post('/add-to-cart', [websiteController::class, 'addToCart']);
 Route::post('/remove-from-cart', [websiteController::class, 'removeFromCart']);
 Route::post('/add-to-wishlist', [websiteController::class, 'addtoWishlist']);
+Route::post('/place-order', [websiteController::class, 'placeOrder']);
+
+
+
+
+
+
+Route::get('/editprofile', [websiteController::class, 'editprofile'])
+    ->name('editprofile');
+Route::post('/updateprofile', [websiteController::class, 'updateprofile'])
+    ->name('updateprofile');

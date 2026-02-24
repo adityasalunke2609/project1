@@ -15,6 +15,9 @@ return new class extends Migration
             $table->integer('order_master_id')->autoIncrement();
             $table->integer('order_master_user_id');
             $table->string('order_master_total');
+            $table->string('order_master_payment_status')->default('pending');
+            $table->string('order_master_payment_mode')->default('cash on delivery');
+            $table->string('order_master_status')->default('pending');
             $table->timestamps();
         });
     }

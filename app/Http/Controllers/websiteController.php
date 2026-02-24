@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
+use App\Models\tbl_order_child;
+use App\Models\tbl_order_master;
 use App\Models\tbl_product;
 use App\Models\tbl_subcategory;
 use App\Models\tbl_wishlist;
@@ -58,8 +60,10 @@ class websiteController extends Controller
             ->select('tbl_addtocart.cart_id as cart_id', 'tbl_product.*')
             ->where('tbl_addtocart.user_id', auth()->id())
             ->get();
+
         return View('website.pages.shopping_cart', compact('cart'));
     }
+
     public function removeFromCart(Request $request)
     {
 
@@ -67,6 +71,7 @@ class websiteController extends Controller
         if ($cart) {
             $cart->delete();
         }
+
         return redirect('/shoppingCart');
     }
 
@@ -84,12 +89,13 @@ class websiteController extends Controller
 
     public function wishlist()
     {
-        
+
         $wishlist = tbl_wishlist::where('wishlist_user_id', auth()->id())->get();
+
         return View('website.pages.wishlist', compact('wishlist'));
     }
 
-    function addtoWishlist(Request $request)
+    public function addtoWishlist(Request $request)
     {
         $wishlist = new tbl_wishlist;
         $wishlist->wishlist_user_id = $request->input('user_id');
@@ -102,6 +108,36 @@ class websiteController extends Controller
     public function checkout()
     {
         return View('website.pages.checkOut');
+    }
+
+    public function addtocheckout(Request $request)
+    {
+        $ordermaster = new tbl_order_master;
+        $ordermaster->order_master_user_id = $request->id;
+        $ordermaster->order_master_total = $request->total;
+        $ordermaster->order_master_payment_status = 'pending';
+        $ordermaster->order_master_payment_mode = 'cash on delivery';
+        $ordermaster->order_master_status = 'pending';
+        $ordermaster->save();
+
+        $catrtItems = tbl_addtocart::where('user_id', $request->id)->get();
+
+        foreach ($catrtItems as $data) {
+
+            $orderchild = new tbl_order_child;
+            $orderchild->order_child_user_id = $request->id;
+            $orderchild->order_child_master_id = $ordermaster->order_master_id;
+            $orderchild->order_child_product_id = $data->cart_product_id;
+            $orderchild->order_child_cart_price = $data->cart_price;
+            $orderchild->order_child_cart_quantity = $data->cart_quantity;
+            $orderchild->order_child_cart_total = $data->cart_total;
+
+            $orderchild->save();
+        }
+        $cart = tbl_addtocart::where('user_id', $request->id)->get();
+        foreach ($cart as $data) {
+            $data->delete();
+        }
     }
 
     public function blog_details()
@@ -131,5 +167,18 @@ class websiteController extends Controller
         return redirect('/')->with('success', 'Profile updated successfully.');
     }
 
-    
+    public function order()
+    {
+        if (Auth::check()) {
+            $order = DB::table('tbl_order_master')
+                ->join('users', 'tbl_order_master.order_master_user_id', '=', 'users.id')
+                ->select('tbl_order_master.*', 'users.name as use_name')
+                ->where('tbl_order_master.order_master_user_id', auth()->id())
+                ->get();
+        } else {
+            return redirect('/login');
+        }
+
+        return View('website.pages.order', compact('order'));
+    }
 }
