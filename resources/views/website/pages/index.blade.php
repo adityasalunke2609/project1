@@ -30,10 +30,11 @@
 
                                     <!-- Wishlist -->
                                     <li>
-                                        <form action="/add-to-wishlist" method="post">
+                                        <form action="/add-to-wishlist" method="POST">
                                             @csrf
+
                                             <input type="hidden" name="product_id" value="{{ $data->product_id }}">
-                                            <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+
                                             <button type="submit" class="btn btn-light btn-sm rounded-circle shadow-sm">
                                                 <i class="fa fa-heart text-danger"></i>
                                             </button>
@@ -78,8 +79,9 @@
 
                                 <form action="/add-to-cart" method="post">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{ $data->product_id }}">
-                                    <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
+                                    <input type="hidden" name="productId" value="{{ $data->product_id }}">
+                                    <input type="hidden" name="userId" value="{{ Auth::user()->id ?? 0 }}">
+                                    <input type="hidden" name="quantity" value="1">
                                     <button type="submit" class="btn btn-dark btn-sm px-4 rounded-pill">
                                         + Add To Cart
                                     </button>

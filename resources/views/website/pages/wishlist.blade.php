@@ -66,10 +66,12 @@
                                             ${{ $data->product_price }}
                                         </td>
 
-                                        <!-- Action -->
-                                        <td class="cart__close text-center">
-                                            <i class="fa fa-close"></i>
-                                        </td>
+                                         <form action="/remove-from-wishlist" method="post">
+                                            @csrf
+                                            <input type="hidden" name="wishlistId" value="{{ $data->wishlist_id }}">
+                                            <td class="cart__close"><button type="submit" class="border-0"><i
+                                                        class="fa fa-close"></i></button></td>
+                                        </form>
                                     </tr>
                                 @endforeach
 

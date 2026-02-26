@@ -55,7 +55,7 @@ class CategoryController extends Controller
         $category = tbl_category::find($request->category_id);
         $category->category_name = $request->categoryName;
         $category->save();
-
+    
         return redirect('/admin/category');
     }
 }

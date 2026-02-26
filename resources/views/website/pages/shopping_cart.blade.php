@@ -103,14 +103,17 @@
                             @csrf
 
                             @foreach ($cart as $data)
-                                <input type="hidden" name="cart_ids[]" value="{{ $data->cart_id }}">
+                                <input type="hidden" name="product_id[]" value="{{ $data->product_id }}">
+                                <input type="hidden" name="user_id[]" value="{{ $data->user_id }}">
+                                <input type="hidden" name="cart_price[]" value="{{ $data->cart_price }}">
+                                <input type="hidden" name="cart_quantity[]" value="{{ $data->cart_quantity }}">
+                                <input type="hidden" name="cart_total[]" value="{{ $data->cart_total }}">
                             @endforeach
 
                             <button type="submit" class="primary-btn">
                                 Proceed to Checkout
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
-use App\Models\tbl_order_child;
-use App\Models\tbl_order_master;
 use App\Models\tbl_product;
 use App\Models\tbl_subcategory;
 use App\Models\tbl_wishlist;
@@ -57,12 +55,20 @@ class websiteController extends Controller
     {
         $cart = DB::table('tbl_addtocart')
             ->join('tbl_product', 'tbl_addtocart.product_id', '=', 'tbl_product.product_id')
-            ->select('tbl_addtocart.cart_id as cart_id', 'tbl_product.*')
+            ->select(
+                'tbl_addtocart.cart_id',
+                'tbl_addtocart.user_id',
+                'tbl_addtocart.cart_price',
+                'tbl_addtocart.cart_quantity',
+                'tbl_addtocart.cart_total',
+                'tbl_product.*'
+            )
             ->where('tbl_addtocart.user_id', auth()->id())
             ->get();
 
         return View('website.pages.shopping_cart', compact('cart'));
     }
+
 
     public function removeFromCart(Request $request)
     {
@@ -75,16 +81,18 @@ class websiteController extends Controller
         return redirect('/shoppingCart');
     }
 
-    public function addToCart(Request $request)
+
+    function addToCart(Request $request)
     {
-
-        $cart = new tbl_addtocart;
-        $cart->user_id = $request->input('user_id');
-        $cart->product_id = $request->input('product_id');
+        $product = tbl_product::find($request->productId);
+        $cart = new tbl_addtocart();
+        $cart->product_id = $request->productId;
+        $cart->user_id = $request->userId;
+        $cart->cart_price = $product->product_sale;
+        $cart->cart_quantity = $request->quantity;
+        $cart->cart_total = $product->product_sale * $request->quantity;
         $cart->save();
-
         return redirect('/shoppingCart');
-
     }
 
     public function wishlist()
@@ -95,11 +103,22 @@ class websiteController extends Controller
         return View('website.pages.wishlist', compact('wishlist'));
     }
 
+     function removeFromWishlist(Request $request)
+    {
+        $wishlist = tbl_wishlist::find($request->wishlistId);
+        $wishlist->delete();
+        return redirect('/wishlist');
+    }
+
     public function addtoWishlist(Request $request)
     {
+        if (! Auth::check()) {
+            return redirect('/login');
+        }
+
         $wishlist = new tbl_wishlist;
-        $wishlist->wishlist_user_id = $request->input('user_id');
-        $wishlist->wishlist_product_id = $request->input('product_id');
+        $wishlist->wishlist_user_id = auth()->id();
+        $wishlist->wishlist_product_id = $request->product_id;
         $wishlist->save();
 
         return redirect('/wishlist');
@@ -112,32 +131,40 @@ class websiteController extends Controller
 
     public function addtocheckout(Request $request)
     {
-        $ordermaster = new tbl_order_master;
-        $ordermaster->order_master_user_id = $request->id;
-        $ordermaster->order_master_total = $request->total;
-        $ordermaster->order_master_payment_status = 'pending';
-        $ordermaster->order_master_payment_mode = 'cash on delivery';
-        $ordermaster->order_master_status = 'pending';
-        $ordermaster->save();
-
-        $catrtItems = tbl_addtocart::where('user_id', $request->id)->get();
-
-        foreach ($catrtItems as $data) {
-
-            $orderchild = new tbl_order_child;
-            $orderchild->order_child_user_id = $request->id;
-            $orderchild->order_child_master_id = $ordermaster->order_master_id;
-            $orderchild->order_child_product_id = $data->cart_product_id;
-            $orderchild->order_child_cart_price = $data->cart_price;
-            $orderchild->order_child_cart_quantity = $data->cart_quantity;
-            $orderchild->order_child_cart_total = $data->cart_total;
-
-            $orderchild->save();
+        if (! Auth::check()) {
+            return redirect('/login');
         }
-        $cart = tbl_addtocart::where('user_id', $request->id)->get();
-        foreach ($cart as $data) {
-            $data->delete();
+
+        $grandTotal = array_sum($request->cart_total);
+
+        $orderMasterId = DB::table('tbl_order_master')->insertGetId([
+            'order_master_user_id' => auth()->id(),
+            'order_master_total' => $grandTotal,
+            'order_master_payment_status' => 'pending',
+            'order_master_payment_mode' => 'cash on delivery',
+            'order_master_status' => 'pending',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        foreach ($request->product_id as $key => $productId) {
+            DB::table('tbl_order_child')->insert([
+                'order_child_master_id' => $orderMasterId,
+                'order_child_user_id' => auth()->id(),
+                'order_child_product_id' => $productId,
+                'order_child_cart_price' => $request->cart_price[$key],
+                'order_child_cart_quantity' => $request->cart_quantity[$key],
+                'order_child_cart_total' => $request->cart_total[$key],
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
         }
+
+        DB::table('tbl_addtocart')
+            ->where('user_id', auth()->id())
+            ->delete();
+
+        return redirect('/order');
     }
 
     public function blog_details()
@@ -169,16 +196,24 @@ class websiteController extends Controller
 
     public function order()
     {
-        if (Auth::check()) {
-            $order = DB::table('tbl_order_master')
-                ->join('users', 'tbl_order_master.order_master_user_id', '=', 'users.id')
-                ->select('tbl_order_master.*', 'users.name as use_name')
-                ->where('tbl_order_master.order_master_user_id', auth()->id())
-                ->get();
-        } else {
+        if (! Auth::check()) {
             return redirect('/login');
         }
 
-        return View('website.pages.order', compact('order'));
+        $order = DB::table('tbl_order_child')
+            ->join('tbl_order_master', 'tbl_order_child.order_child_master_id', '=', 'tbl_order_master.order_master_id')
+            ->join('tbl_product', 'tbl_order_child.order_child_product_id', '=', 'tbl_product.product_id')
+            ->select(
+                'tbl_order_master.order_master_id as order_id',
+                'tbl_order_master.order_master_status as status',
+                'tbl_order_child.order_child_cart_quantity as quantity',
+                'tbl_order_child.order_child_cart_total as total_price',
+                'tbl_product.product_name',
+                'tbl_product.product_image'
+            )
+            ->where('tbl_order_child.order_child_user_id', auth()->id())
+            ->get();
+
+        return view('website.pages.order', compact('order'));
     }
 }

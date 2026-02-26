@@ -29,7 +29,7 @@
                             @foreach ($order as $data)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $data->customer_name }}</td>
+                                    <td>{{ $data->user_name }}</td>
                                     <td>{{ $data->product_name }}</td>
                                     <td>{{ $data->quantity }}</td>
                                     <td>{{ $data->total_price }}</td>
@@ -43,26 +43,24 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="form-button-action">
-                                            <a href="{{ route('order.edit', $data->order_master_id) }}"
-                                                class="btn btn-link btn-primary btn-lg" data-original-title="Edit Task"
-                                                data-toggle="tooltip">
-                                                <i class="fa fa-edit"></i>
-                                            </a>
+                                        <a href="{{ route('order.edit', $data->order_master_id) }}"
+                                            class="btn btn-link btn-primary">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
-    </div>
-    {{-- @include('admin.pages.unit.edit') --}}
+        {{-- @include('admin.pages.unit.edit') --}}
 
-    <script>
-        function editData() {
-            console.log(order_id);
-            console.log(order_name);
-        }
-    </script>
-@endsection
+        <script>
+            function editData() {
+                console.log(order_id);
+                console.log(order_name);
+            }
+        </script>
+    @endsection

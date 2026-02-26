@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('tbl_addtocart', function (Blueprint $table) {
             $table->integer('cart_id')->autoIncrement();
             $table->string('product_id');
+            $table->string('cart_price');
+            $table->string('cart_quantity');
+            $table->string('cart_total');
             $table->string('user_id');
             $table->timestamps();
         });
