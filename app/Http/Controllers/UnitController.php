@@ -20,7 +20,7 @@ class UnitController extends Controller
         $unit->unit_name = $request->unitName;
         $unit->save();
 
-        return redirect('/admin/unit');
+        return redirect('/admin/unit')->with("success","Unit Add Successfully");;
     }
 
     public function remove(Request $request)
@@ -28,7 +28,7 @@ class UnitController extends Controller
         $unit = tbl_unit::find($request->unit_id);
         $unit->delete();
 
-        return redirect('/admin/unit');
+        return redirect('/admin/unit')->with("delete","Unit delete Successfully");;
     }
 
     public function edit(Request $request)
@@ -36,7 +36,7 @@ class UnitController extends Controller
         $unit = tbl_unit::find($request->unit_id);
         $unit->unit_name = $request->unitName;
         $unit->save();
-        return redirect('/admin/unit');
+        return redirect('/admin/unit')->with("success"," Unit update Successfully");;
     }
 }
 

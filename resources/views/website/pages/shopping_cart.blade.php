@@ -111,7 +111,7 @@
                             @endforeach
 
                             <button type="submit" class="primary-btn">
-                                Proceed to Checkout
+                                Proceed to Checkout 
                             </button>
                         </form>
                     </div>

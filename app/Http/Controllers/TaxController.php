@@ -21,7 +21,7 @@ class TaxController extends Controller
         $tax->tax_percentage = $request->taxPercentage;
         $tax->save();
 
-        return redirect('/admin/tax');
+        return redirect('/admin/tax')->with("success","tax Add Successfully");;
     }
 
     public function remove(Request $request)
@@ -29,7 +29,7 @@ class TaxController extends Controller
         $tax = tbl_tax::find($request->tax_id);
         $tax->delete();
 
-        return redirect('/admin/tax');
+        return redirect('/admin/tax')->with("delete","tax remove Successfully");;
     }
 
     public function edit(Request $request)
@@ -39,6 +39,6 @@ class TaxController extends Controller
         $tax->tax_percentage = $request->taxPercentage;
         $tax->save();
 
-        return redirect('/admin/tax');
+        return redirect('/admin/tax')->with("success","tax update Successfully");;
     }
 }

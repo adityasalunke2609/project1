@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-primary shadow-sm rounded">
 
-            <form action="/admin/category/edit" method="post">
+            <form action="/admin/category/edit" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="category_id" id="editcategoryId">
                 <div class="modal-header">

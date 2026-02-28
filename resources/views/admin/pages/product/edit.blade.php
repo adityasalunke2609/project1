@@ -6,12 +6,15 @@
                 <h1 class="modal-title fs-4" id="exampleModalXlLabel">Edit Product</h1><button type="button"
                     class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <form action="/admin/product/edit" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="product_id" id="editProductId">  
+
             <div class="modal-body">
                 <div class="card" style="background-color:rgb(168, 221, 221)">
                     <div class="card-body">
                         <button type="button" class="btn btn-light">Primary Information</button>
-                        <button type="button" class="btn btn-light">Ecommerce</button>
-
+                     
                     </div>
                 </div>
                 <form action="/admin/product" method="post" enctype="multipart/form-data">
@@ -58,9 +61,9 @@
                                 <label for="subCategoryId">Sub Category</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="subCategoryId">
+                                    name="productSubCategoryName">
                                     @foreach ($subcategory as $data)
-                                        <option value="{{ $data->sub_category_id }}">{{ $data->sub_category_name }}
+                                        <option value="{{ $data->subcategory_id }}">{{ $data->subcategory_name }}
                                         </option>
                                     @endforeach
                                 </select>

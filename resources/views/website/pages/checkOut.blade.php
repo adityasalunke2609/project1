@@ -145,7 +145,7 @@
                                          <span class="checkmark"></span>
                                      </label>
                                  </div>
-                                 <form action="{{ url('/place-order') }}" method="POST">
+                                 <form action="{{ url('/order') }}" method="POST">
                                      @csrf
                                      <input type="hidden" name="total_price" value="500">
 

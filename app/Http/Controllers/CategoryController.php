@@ -38,24 +38,44 @@ class CategoryController extends Controller
         $category->category_banner_image = $categoryBannername;
         $category->save();
 
-        return redirect('/admin/category');
-    }
+        return redirect('/admin/category')->with("success","Category Add Successfully");    
+        }
 
     public function remove(Request $request)
     {
         $category = tbl_category::find($request->category_id);
         $category->delete();
 
-        return redirect('/admin/category');
+        return redirect('/admin/category')->with("delete","Category deleted Successfully");
 
     }
 
     public function edit(Request $request)
     {
+
         $category = tbl_category::find($request->category_id);
+
+        $path = public_path('uploads/category');
+
+        $categoryimage = $request->file('categoryimage');
+        $categoryname = '';
+        if ($categoryimage) {
+            $categoryname = time().'.png';
+            $categoryimage->move($path, $categoryname);
+            $category->category_image = $categoryname;
+        }
+
+        $categoryBannerImage = $request->file('categorybannerimage');
+        $categoryBannername = '';
+        if ($categoryBannerImage) {
+            $categoryBannername = time().'banner.png';
+            $categoryBannerImage->move($path, $categoryBannername);
+            $category->category_banner_image = $categoryBannername;
+        }
+
         $category->category_name = $request->categoryName;
         $category->save();
-    
-        return redirect('/admin/category');
+
+        return redirect('/admin/category')->with("success","Category Updete Successfully");
     }
 }

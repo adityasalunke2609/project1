@@ -164,7 +164,7 @@ class websiteController extends Controller
             ->where('user_id', auth()->id())
             ->delete();
 
-        return redirect('/order');
+        return redirect('/checkOut');
     }
 
     public function blog_details()

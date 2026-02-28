@@ -1,47 +1,42 @@
- <button type="submit" class="btn"><i class="fa-solid fa-pen-to-square text-success fs-3" data-bs-toggle="modal"
-         data-bs-target="#editModal"></i>
- </button>
  <!-- Modal -->
  <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
      <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content border-primary shadow-sm rounded">
 
-             <div class="modal-header">
-                 <h5 class="modal-title">Update Sub Category</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-             </div>
+            <form action="/admin/subcategory/edit" method="post" enctype="multipart/form-data">
+                 @csrf
+                 <input type="hidden" name="subcategory_id" id="editSubCategoryId">
+                 <div class="modal-body">
 
-             <div class="modal-body">
+                     <div class="mb-3">
+                         <label class="form-label">Category</label>
+                         <select class="form-select" name="categoryName" id="editCategoryId">
+                             @foreach ($category as $data)
+                                 <option value="{{ $data->category_id }}">
+                                     {{ $data->category_name }}
+                                 </option>
+                             @endforeach
+                         </select>
+                     </div>
 
-                 <div class="mb-3">
-                     <label class="form-label">Category</label>
-                     <select class="form-select" aria-label="Default select example">
-                         <option selected>select</option>
-                         <option value="1">One</option>
-                         <option value="2">Two</option>
-                         <option value="3">Three</option>
-                     </select>
-                 </div>
+                     <div class="mb-3">
+                         <label class="form-label">Sub Category Name</label>
+                         <input type="text" class="form-control" id="editSubCategoryName" name="SubCategoryName"
+                             placeholder="Sub Category Name">
+                     </div>
 
-                 <div class="mb-3">
-                     <label class="form-label">Sub Category Name</label>
-                     <input type="text" class="form-control">
-                 </div>
-
-                 <div class="row text-center">
-                     <div class="col-md-6">
-                         <p>Sub Category Image</p>
-                         <!-- <img id="catImg" src="{{ asset('admin/img/profile.jpg') }}" class="mb-2" width="150"> -->
-                         <input type="file" class="form-control">
+                     <div class="mb-3">
+                         <label class="form-label">Sub Category Image</label>
+                         <input type="file" class="form-control" name="SubCategoryImage" id="editSubCategoryImage">
                      </div>
                  </div>
-             </div>
-
-             <div class="modal-footer">
-                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-                 <button type="submit" class="btn btn-success">Save changes</button>
-             </div>
-
+                 <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                     <button type="submit" class="btn btn-success">Save</button>
+                 </div>
          </div>
+         </form>
+
      </div>
+ </div>
  </div>

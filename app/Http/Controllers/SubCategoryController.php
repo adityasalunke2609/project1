@@ -37,14 +37,37 @@ class SubCategoryController extends Controller
         $subcategory->subcategory_image = $subCategoryImageName;
         $subcategory->save();
 
-        return redirect('/admin/subcategory');
+        return redirect('/admin/subcategory')->with("success","SubCategory Add Successfully");
     }
+
+    public function edit(Request $request)
+    {
+        
+        $subcategory = tbl_subcategory::find($request->subcategory_id);
+
+        $path = public_path('uploads/subcategory');
+      
+        $subCategoryImage = $request->file('SubCategoryImage');
+        $subCategoryImageName = '';
+        if ($subCategoryImage) {
+            $subCategoryImageName = time().'subCategoryImage.png';
+            $subCategoryImage->move($path, $subCategoryImageName);
+            $subcategory->subcategory_image = $subCategoryImageName;
+        }
+
+        $subcategory->subcategory_name = $request->SubCategoryName;
+        $subcategory->category_id = $request->categoryName;
+        $subcategory->save();
+
+        return redirect('/admin/subcategory')->with("success","SubCategory Update Successfully");
+    }
+
 
     public function remove(Request $request)
     {
         $subcategory = tbl_subcategory::find($request->subcategory_id);
         $subcategory->delete();
 
-        return redirect('/admin/subcategory');
+        return redirect('/admin/subcategory')->with("delete","SubCategory deleted Successfully");
     }
 }

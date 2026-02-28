@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/subcategory', [SubCategoryController::class, 'index']);
     Route::post('/admin/subcategory', [SubCategoryController::class, 'store']);
     Route::post('/admin/subcategory/delete', [SubCategoryController::class, 'remove']);
+    Route::post('/admin/subcategory/edit', [SubCategoryController::class, 'edit']);
 
     // for tax
     Route::get('/admin/tax', action: [TaxController::class, 'index']);
@@ -70,14 +71,18 @@ Route::get('/wishlist', [websiteController::class, 'wishlist']);
 Route::get('/order', [websiteController::class, 'order']);
 
 
-Route::get('/checkOut', [websiteController::class, 'checkout']);
 
+Route::get('/checkOut', [websiteController::class, 'checkout']);
 Route::post('/checkOut', [websiteController::class, 'addtocheckout']);
+
 
 Route::post('/add-to-cart', [websiteController::class, 'addToCart']);
 Route::post('/remove-from-cart', [websiteController::class, 'removeFromCart']);
+
+
 Route::post('/add-to-wishlist', [websiteController::class, 'addtoWishlist']);
 Route::post('/remove-from-wishlist', [websiteController::class, 'removeFromWishlist']);
+
 
 Route::get('/editprofile', [websiteController::class, 'editprofile'])
     ->name('editprofile');
