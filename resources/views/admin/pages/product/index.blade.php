@@ -18,14 +18,12 @@
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    
                 @endif
-                 @if (session('delete'))
+                @if (session('delete'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ session('delete') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-
                 @endif
                 <table class="table table-head-bg-secondary">
                     <thead>
@@ -43,11 +41,13 @@
                         @foreach ($product as $data)
                             <tr>
                                 <td>{{ $data->product_id }}</td>
-                                <td><img src="{{ asset('uploads/products/' . $data->product_image) }}" width="100" height="100"> </td>
+                                <td><img src="{{ asset('uploads/products/' . $data->product_image) }}" width="100"
+                                        height="100"> </td>
                                 <td>{{ $data->tax_name }}</td>
                                 <td>{{ $data->category_name }}</td>
                                 <td>{{ $data->subcategory_name }}</td>
                                 <td>Active</td>
+
                                 <td>
                                     <div class="d-flex gap-5">
                                         <div
@@ -57,8 +57,6 @@
                                                     data-bs-toggle="modal" data-bs-target="#editModal"></i>
                                             </button>
                                         </div>
-
-
 
                                         <form action="/admin/product/delete" method="post">
                                             @csrf
@@ -79,17 +77,12 @@
     </div>
 
     @include('admin.pages.product.edit')
-
     <script>
         function editData(product_id, product_tax, product_caterogy_id, product_subcaterogy_id) {
-            console.log(product_id);
-            console.log(product_tax);
-            console.log(product_caterogy_id);
-            console.log(product_subcaterogy_id);
-            document.getElementById('editcategoryId').value = product_id;
-            document.getElementById('editCategoryName').value = product_tax;
-            document.getElementById('editCategoryName').value = product_caterogy_id;
-            document.getElementById('editCategoryName').value = product_subcaterogy_id;
+            document.getElementById('editProductId').value = product_id;
+            document.getElementById('editProductTax').value = product_tax;
+            document.getElementById('editProductCategoryId').value = product_caterogy_id;
+            document.getElementById('editProductSubCategoryId').value = product_subcaterogy_id;
         }
     </script>
 @endsection

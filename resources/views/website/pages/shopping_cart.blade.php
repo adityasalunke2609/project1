@@ -95,8 +95,8 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Subtotal <span>{{$cart->sum('cart_total') }}</span></li>
+                            <li>Total <span>{{$cart->sum('cart_total') }}</span></li>
                         </ul>
 
                         <form action="{{ url('/checkOut') }}" method="POST">
@@ -104,10 +104,11 @@
 
                             @foreach ($cart as $data)
                                 <input type="hidden" name="product_id[]" value="{{ $data->product_id }}">
-                                <input type="hidden" name="user_id[]" value="{{ $data->user_id }}">
                                 <input type="hidden" name="cart_price[]" value="{{ $data->cart_price }}">
                                 <input type="hidden" name="cart_quantity[]" value="{{ $data->cart_quantity }}">
                                 <input type="hidden" name="cart_total[]" value="{{ $data->cart_total }}">
+                                <input type="hidden" name="user_id[]" value="{{ $data->user_id }}">
+                                <input type="hidden" name="totalAmount" value="{{$cart->sum('cart_total') }}">
                             @endforeach
 
                             <button type="submit" class="primary-btn">

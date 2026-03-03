@@ -49,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/order', [orderController::class, 'index']);
     Route::post('/admin/order/delete', [orderController::class, 'remove']);
     Route::post('/admin/order/edit', [orderController::class, 'edit']);
+    Route::get('/admin/order/view/{id}', [orderController::class, 'view']);
 
 });
 
@@ -60,29 +61,31 @@ route::get('/logout', function () {
 
 // for website routes
 Route::get('/', [websiteController::class, 'index']);
+
 Route::get('/shop', [websiteController::class, 'shop']);
-Route::get('/blog', [websiteController::class, 'blog']);
-Route::get('/contact', [websiteController::class, 'contact']);
-Route::get('/about', [websiteController::class, 'about']);
-Route::get('/blogDetails', [websiteController::class, 'blog_details']);
-Route::get('/shopDetails', [websiteController::class, 'shop_details']);
 Route::get('/shoppingCart', [websiteController::class, 'shopping_cart']);
-Route::get('/wishlist', [websiteController::class, 'wishlist']);
-Route::get('/order', [websiteController::class, 'order']);
 
-
+Route::get('/shopDetails/{id}', [websiteController::class, 'shop_details']);
 
 Route::get('/checkOut', [websiteController::class, 'checkout']);
 Route::post('/checkOut', [websiteController::class, 'addtocheckout']);
+Route::post('/placeOrder', [websiteController::class, 'placeOrder']);
 
+Route::get('/about', [websiteController::class, 'about']);
+Route::get('/contact', [websiteController::class, 'contact']);
+Route::get('/blog', [websiteController::class, 'blog']);
+Route::get('/blogDetails', [websiteController::class, 'blog_details']);
 
 Route::post('/add-to-cart', [websiteController::class, 'addToCart']);
+Route::post('/update-to-cart', [websiteController::class, 'updateToCart']);
 Route::post('/remove-from-cart', [websiteController::class, 'removeFromCart']);
 
-
+Route::get('/wishlist', [websiteController::class, 'wishlist']);
 Route::post('/add-to-wishlist', [websiteController::class, 'addtoWishlist']);
 Route::post('/remove-from-wishlist', [websiteController::class, 'removeFromWishlist']);
 
+Route::get('/order', [websiteController::class, 'order']);
+Route::get('/order/view/{id}', [websiteController::class, 'orderView']);
 
 Route::get('/editprofile', [websiteController::class, 'editprofile'])
     ->name('editprofile');

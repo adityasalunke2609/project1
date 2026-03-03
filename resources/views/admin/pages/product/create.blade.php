@@ -15,17 +15,9 @@
                     class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card" style="background-color:rgb(168, 221, 221)">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-light">Primary Information</button>
-                        <button type="button" class="btn btn-light">Ecommerce</button>
-
-                    </div>
-                </div>
-
                 <form action="/admin/product" method="post" enctype="multipart/form-data">
                     @csrf
-                    
+
                     <div class="row mx-2" style="border:1px solid green">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -102,7 +94,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="card-body" style="background-color:rgb(168, 221, 221)">
+                        <div class="card-body bg-light">
 
                             <table class="table table-bordered">
                                 <thead>
@@ -155,10 +147,7 @@
                         </div>
                     </div>
                 </form>
-
             </div>
-
-
         </div>
     </div>
 </div>

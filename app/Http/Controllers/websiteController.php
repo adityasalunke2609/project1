@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
 use App\Models\tbl_product;
+use App\Models\tbl_shipping;
 use App\Models\tbl_subcategory;
 use App\Models\tbl_wishlist;
 use Illuminate\Http\Request;
@@ -29,28 +30,6 @@ class websiteController extends Controller
         return View('website.pages.shop', compact('products', 'category', 'subcategory'));
     }
 
-    public function blog()
-    {
-        return View('website.pages.blog');
-    }
-
-    public function contact()
-    {
-        return View('website.pages.contact');
-    }
-
-    public function about()
-    {
-        return View('website.pages.about');
-    }
-
-    public function shop_details()
-    {
-        $products = tbl_product::all();
-
-        return View('website.pages.shop_details', compact('products'));
-    }
-
     public function shopping_cart()
     {
         $cart = DB::table('tbl_addtocart')
@@ -69,64 +48,31 @@ class websiteController extends Controller
         return View('website.pages.shopping_cart', compact('cart'));
     }
 
-
-    public function removeFromCart(Request $request)
+    public function shop_details($id)
     {
-
-        $cart = tbl_addtocart::find($request->cartID);
-        if ($cart) {
-            $cart->delete();
-        }
-
-        return redirect('/shoppingCart');
+      
+            $products = tbl_product::all();
+    
+            return View('website.pages.shop_details', compact('products'));
     }
 
-
-    function addToCart(Request $request)
-    {
-        $product = tbl_product::find($request->productId);
-        $cart = new tbl_addtocart();
-        $cart->product_id = $request->productId;
-        $cart->user_id = $request->userId;
-        $cart->cart_price = $product->product_sale;
-        $cart->cart_quantity = $request->quantity;
-        $cart->cart_total = $product->product_sale * $request->quantity;
-        $cart->save();
-        return redirect('/shoppingCart');
-    }
-
-    public function wishlist()
-    {
-
-        $wishlist = tbl_wishlist::where('wishlist_user_id', auth()->id())->get();
-
-        return View('website.pages.wishlist', compact('wishlist'));
-    }
-
-     function removeFromWishlist(Request $request)
-    {
-        $wishlist = tbl_wishlist::find($request->wishlistId);
-        $wishlist->delete();
-        return redirect('/wishlist');
-    }
-
-    public function addtoWishlist(Request $request)
-    {
-        if (! Auth::check()) {
-            return redirect('/login');
-        }
-
-        $wishlist = new tbl_wishlist;
-        $wishlist->wishlist_user_id = auth()->id();
-        $wishlist->wishlist_product_id = $request->product_id;
-        $wishlist->save();
-
-        return redirect('/wishlist');
-    }
 
     public function checkout()
     {
-        return View('website.pages.checkOut');
+        $cart = DB::table('tbl_addtocart')
+            ->join('tbl_product', 'tbl_addtocart.product_id', '=', 'tbl_product.product_id')
+            ->select(
+                'tbl_addtocart.cart_id',
+                'tbl_addtocart.user_id',
+                'tbl_addtocart.cart_price',
+                'tbl_addtocart.cart_quantity',
+                'tbl_addtocart.cart_total',
+                'tbl_product.*'
+            )
+            ->where('tbl_addtocart.user_id', auth()->id())
+            ->get();
+
+        return View('website.pages.checkOut', compact('cart'));
     }
 
     public function addtocheckout(Request $request)
@@ -167,6 +113,37 @@ class websiteController extends Controller
         return redirect('/checkOut');
     }
 
+    public function placeOrder(Request $request)
+    {
+        if ($request->streetAddress == '') {
+            return redirect('/checkOut')->with('error', 'Street address is required.');
+        }
+        if ($request->pinCode == '') {
+            return redirect('/checkOut')->with('error', 'Pin code is required.');
+        }
+
+        $shipping = new tbl_shipping;
+        $shipping->shipping_user_id = $request->userId;
+        $shipping->shipping_address = $request->streetAddress;
+        $shipping->shipping_pin_code = $request->pinCode;
+        $shipping->save();
+    }
+
+    public function about()
+    {
+        return View('website.pages.about');
+    }
+
+    public function contact()
+    {
+        return View('website.pages.contact');
+    }
+
+    public function blog()
+    {
+        return View('website.pages.blog');
+    }
+
     public function blog_details()
     {
         return View('website.pages.blog_details');
@@ -194,6 +171,71 @@ class websiteController extends Controller
         return redirect('/')->with('success', 'Profile updated successfully.');
     }
 
+    public function addToCart(Request $request)
+    {
+        $product = tbl_product::find($request->productId);
+        $cart = new tbl_addtocart;
+        $cart->product_id = $request->productId;
+        $cart->user_id = $request->userId;
+        $cart->cart_price = $product->product_sale;
+        $cart->cart_quantity = $request->quantity;
+        $cart->cart_total = $product->product_sale * $request->quantity;
+        $cart->save();
+
+        return redirect('/shoppingCart');
+    }
+
+    public function updateToCart(Request $request)
+    {
+        $cart = tbl_addtocart::find($request->cartID);
+        $cart->cart_quantity = $request->quantity;
+        $cart->cart_total = $request->cart_price * $request->quantity;
+        $cart->save();
+
+        return redirect('/shoppingCart');
+    }
+
+    public function removeFromCart(Request $request)
+    {
+
+        $cart = tbl_addtocart::find($request->cartID);
+        if ($cart) {
+            $cart->delete();
+        }
+
+        return redirect('/shoppingCart');
+    }
+
+    public function wishlist()
+    {
+
+        $wishlist = tbl_wishlist::where('wishlist_user_id', auth()->id())->get();
+
+        return View('website.pages.wishlist', compact('wishlist'));
+    }
+
+    public function addtoWishlist(Request $request)
+    {
+        if (! Auth::check()) {
+            return redirect('/login');
+        }
+
+        $wishlist = new tbl_wishlist;
+        $wishlist->wishlist_user_id = auth()->id();
+        $wishlist->wishlist_product_id = $request->product_id;
+        $wishlist->save();
+
+        return redirect('/wishlist');
+    }
+
+    public function removeFromWishlist(Request $request)
+    {
+        $wishlist = tbl_wishlist::find($request->wishlistId);
+        $wishlist->delete();
+
+        return redirect('/wishlist');
+    }
+
     public function order()
     {
         if (! Auth::check()) {
@@ -215,5 +257,23 @@ class websiteController extends Controller
             ->get();
 
         return view('website.pages.order', compact('order'));
+    }
+
+    public function viewOrder($id)
+    {
+
+        $orderDetails = DB::table('tbl_order_child')
+            ->join('tbl_product', 'tbl_order_child.order_child_product_id', '=', 'tbl_product.product_id')
+            ->where('tbl_order_child.order_child_master_id', $id)
+            ->where('tbl_order_child.order_child_user_id', Auth::id())
+            ->select(
+                'tbl_order_child.*',
+                'tbl_product.*'
+            )
+            ->get();
+
+        return view('website.pages.orderDetails', compact('orderDetails'));
+
+        return $id;
     }
 }

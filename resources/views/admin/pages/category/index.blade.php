@@ -6,7 +6,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="card-title col-md-6 ">Product Category</div>
+                    <div class="card-title col-md-6 ">Category</div>
                     <div class="col-md-6 d-flex justify-content-end">
                         @include('admin.pages.category.create')
                     </div>

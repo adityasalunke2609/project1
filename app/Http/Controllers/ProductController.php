@@ -24,7 +24,6 @@ class ProductController extends Controller
             ->get();
         $category = tbl_category::all();
         $subcategory = tbl_subcategory::all();
-
         $tax = tbl_tax::all();
         $unit = tbl_unit::all();
 
@@ -61,15 +60,15 @@ class ProductController extends Controller
         $product->product_image = $productImageName;
         $product->save();
 
-        return redirect('/admin/product')->with("success","product Add Successfully");;
+        return redirect('/admin/product')->with('success', 'product Add Successfully');
     }
 
     public function edit(Request $request)
     {
         $product = tbl_product::find($request->product_id);
-        
+
         $product->product_name = $request->productName;
-        $product->product_hsncode = $request->hsnCode;
+        $product->product_hsncode = $request->productHSNcode;
         $product->product_weight = $request->productWeight;
         $product->product_caterogy_id = $request->productCategoryName;
         $product->product_subcaterogy_id = $request->productSubCategoryName;
@@ -87,7 +86,7 @@ class ProductController extends Controller
         $product->product_op_value = $request->opening_value;
         $product->save();
 
-        return redirect('/admin/product')->with("success","Product Update Successfully");;
+        return redirect('/admin/product')->with('success', 'Product Update Successfully');
     }
 
     public function remove(Request $request)
@@ -95,6 +94,6 @@ class ProductController extends Controller
         $product = tbl_product::find($request->product_id);
         $product->delete();
 
-        return redirect('/admin/product')->with("delete"," Product Remove Successfully");;
+        return redirect('/admin/product')->with('delete', ' Product Remove Successfully');
     }
 }

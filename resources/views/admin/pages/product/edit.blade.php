@@ -6,31 +6,21 @@
                 <h1 class="modal-title fs-4" id="exampleModalXlLabel">Edit Product</h1><button type="button"
                     class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/admin/product/edit" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="product_id" id="editProductId">  
-
             <div class="modal-body">
-                <div class="card" style="background-color:rgb(168, 221, 221)">
-                    <div class="card-body">
-                        <button type="button" class="btn btn-light">Primary Information</button>
-                     
-                    </div>
-                </div>
-                <form action="/admin/product" method="post" enctype="multipart/form-data">
+                <form action="/admin/product/edit" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" id="editProductId" name="productId">
                     <div class="row mx-2" style="border:1px solid green">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="productName">Product Name</label>
-                                <input type="text" id="productName" name="productName" placeholder="Product Name"
-                                    class="form-control">
+                                <input type="text" id="editProductName" name="productName" class="form-control">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="hsn">HSN Code</label>
-                                <input type="text" id="hsn" name="hsn" placeholder="HSN Code"
+                                <input type="text" id="hsn" name="productHSNcode" placeholder="HSN Code"
                                     class="form-control">
                             </div>
                         </div>
@@ -43,10 +33,10 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group ">
-                                <label for="categoryId">Category</label>
+                                <label for="productCategoryName">Category</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="categoryId">
+                                    name="productCategoryName" id="editCategoryId">
 
                                     @foreach ($category as $data)
                                         <option value="{{ $data->category_id }}">{{ $data->category_name }}</option>
@@ -61,7 +51,7 @@
                                 <label for="subCategoryId">Sub Category</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="productSubCategoryName">
+                                    name="productSubCategoryName" id="editSubCategoryId">
                                     @foreach ($subcategory as $data)
                                         <option value="{{ $data->subcategory_id }}">{{ $data->subcategory_name }}
                                         </option>
@@ -75,7 +65,7 @@
                                 <label for="tax">Tax %</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="tax">
+                                    name="productTax" id="editProductTax">
                                     @foreach ($tax as $data)
                                         <option value="{{ $data->tax_id }}">{{ $data->tax_name }}</option>
                                     @endforeach
@@ -88,14 +78,14 @@
                                 <label for="unitId">Unit</label>
 
                                 <select class="form-select form-control" aria-label="Default select example"
-                                    name="unitId">
+                                    name="productUnit" id="editProductUnit">
                                     @foreach ($unit as $data)
                                         <option value="{{ $data->unit_id }}">{{ $data->unit_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
-                        <div class="card-body" style="background-color:rgb(168, 221, 221)">
+                        <div class="card-body bg-light">
 
                             <table class="table table-bordered">
                                 <thead>
@@ -148,10 +138,7 @@
                         </div>
                     </div>
                 </form>
-
             </div>
-
-
         </div>
     </div>
 </div>
