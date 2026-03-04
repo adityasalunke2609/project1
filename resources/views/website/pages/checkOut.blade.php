@@ -59,8 +59,8 @@
                                     
                                 </ul>
                                 <ul class="checkout__total__all">
-                                    <li>Subtotal <span>₹{{ $cart->sum('product_sale') }}</span></li>
-                                    <li>Total <span>₹{{ $cart->sum('product_sale') }}</span></li>
+                                    <li>Subtotal <span>₹{{ $cart->sum('cart_total') }}</span></li>
+                                    <li>Total <span>₹{{ $cart->sum('cart_total') }}</span></li>
                                 </ul>
                                 <div class="checkout__input__checkbox">
                                     <label for="acc-or">

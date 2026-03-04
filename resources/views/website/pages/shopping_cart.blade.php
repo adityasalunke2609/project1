@@ -41,11 +41,11 @@
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
                                                 <img src="{{ asset('uploads/products/' . $data->product_image) }} "
-                                                    width="200" alt="">
+                                                    width="100" height="120">
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6>{{ $data->product_name }}</h6>
-                                                <h5>$2000</h5>
+                                                <h5>${{ $data->product_mrp }}</h5>
                                             </div>
                                         </td>
                                         <td class="quantity__item">
@@ -56,7 +56,7 @@
                                             </div>
                                         </td>
 
-                                        <td class="cart__price">$000</td>
+                                        <td class="cart__price">${{ $data->cart_total}}</td>
 
 
                                         <form action="{{ url('/remove-from-cart') }}" method="POST">
@@ -103,11 +103,11 @@
                             @csrf
 
                             @foreach ($cart as $data)
-                                <input type="hidden" name="product_id[]" value="{{ $data->product_id }}">
-                                <input type="hidden" name="cart_price[]" value="{{ $data->cart_price }}">
-                                <input type="hidden" name="cart_quantity[]" value="{{ $data->cart_quantity }}">
-                                <input type="hidden" name="cart_total[]" value="{{ $data->cart_total }}">
-                                <input type="hidden" name="user_id[]" value="{{ $data->user_id }}">
+                                <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                <input type="hidden" name="cart_price" value="{{ $data->cart_price }}">
+                                <input type="hidden" name="cart_quantity" value="{{ $data->cart_quantity }}">
+                                <input type="hidden" name="cart_total" value="{{ $data->cart_total }}">
+                                <input type="hidden" name="user_id" value="{{ $data->user_id }}">
                                 <input type="hidden" name="totalAmount" value="{{$cart->sum('cart_total') }}">
                             @endforeach
 

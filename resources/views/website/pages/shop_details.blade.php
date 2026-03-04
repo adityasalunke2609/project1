@@ -27,21 +27,21 @@
                                 + <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
                                         <div class="product__thumb__pic set-bg"
-                                            data-setbg="{{ asset('uploads/products/' . $data->product_image2) }}">
+                                            data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
                                         <div class="product__thumb__pic set-bg"
-                                            data-setbg="{{ asset('uploads/products/' . $data->product_image3) }}">
+                                            data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                         </div>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
                                         <div class="product__thumb__pic set-bg"
-                                            data-setbg="{{ asset('uploads/products/' . $data->product_image4) }}">
+                                            data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                             <i class="fa fa-play"></i>
                                         </div>
                                     </a>
@@ -57,17 +57,17 @@
                                 </div>
                                 <div class="tab-pane" id="tabs-2" role="tabpanel">
                                     <div class="product__details__pic__item">
-                                        <img src="{{ asset('uploads/products/' . $data->product_image2) }}" alt="">
+                                        <img src="{{ asset('uploads/products/' . $data->product_image) }}" alt="">
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
                                     <div class="product__details__pic__item">
-                                        <img src="{{ asset('uploads/products/' . $data->product_image3) }}" alt="">
+                                        <img src="{{ asset('uploads/products/' . $data->product_image) }}" alt="">
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-4" role="tabpanel">
                                     <div class="product__details__pic__item">
-                                        <img src="{{ asset('uploads/products/' . $data->product_image4) }}" alt="">
+                                        <img src="{{ asset('uploads/products/' . $data->product_image) }}" alt="">
                                         <a href="https://www.youtube.com/watch?v=8PJ3_p7VqHw&list=RD8PJ3_p7VqHw&start_radio=1"
                                             class="video-popup"><i class="fa fa-play"></i></a>
                                     </div>
@@ -94,7 +94,7 @@
                                 <i class="fa fa-star-o"></i>
                                 <span> - 5 Reviews</span>
                             </div>
-                            <h3>$270.00 <span>70.00</span></h3>
+                            <h3><span>{{ $data->product_sale }}</span></h3>
                             <p>Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
                                 cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
                                 with placket.</p>
@@ -296,7 +296,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
                         <div class="product__item">
                             <div class="product__item__pic set-bg"
-                                data-setbg="{{ asset('uploads/products/' . $data->image) }}">
+                                data-setbg="{{ asset('uploads/products/' . $data->product_image) }}">
                                 <span class="label">New</span>
                                 <ul class="product__hover">
                                     <li><a href="#"><img src="{{ asset('website/img/icon/heart.png') }}"

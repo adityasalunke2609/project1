@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\tbl_addtocart;
 use App\Models\tbl_category;
+use App\Models\tbl_order_child;
+use App\Models\tbl_order_master;
 use App\Models\tbl_product;
 use App\Models\tbl_shipping;
 use App\Models\tbl_subcategory;
@@ -51,7 +53,7 @@ class websiteController extends Controller
     public function shop_details($id)
     {
       
-            $products = tbl_product::all();
+            $products = tbl_product::where('product_id', $id)->first();
     
             return View('website.pages.shop_details', compact('products'));
     }
@@ -77,39 +79,29 @@ class websiteController extends Controller
 
     public function addtocheckout(Request $request)
     {
-        if (! Auth::check()) {
-            return redirect('/login');
+
+        $orderMaster = new tbl_order_master();
+        $orderMaster->order_master_user_id = $request->user_id;
+        $orderMaster->order_master_total = $request->cart_total;
+        $orderMaster->order_master_payment_status = 'pending';
+        $orderMaster->order_master_payment_mode = 'cash on delivery';
+        $orderMaster->order_master_status = 'pending';
+        $orderMaster->save();
+
+        
+        $cartItems = tbl_addtocart::where('cart_id', $request->cartId)->get();
+
+        foreach ($cartItems as $data) {
+            
+        $orderchild = new tbl_order_child();
+        $orderchild->order_child_master_id = $orderMaster->order_master_id;
+        $orderchild->order_child_product_id = $data->product_id;
+        $orderchild->order_child_cart_price = $data->cart_price;
+        $orderchild->order_child_cart_quantity = $data->cart_quantity;
+        $orderchild->order_child_cart_total = $data->cart_price * $data->cart_quantity;
+
+        $orderchild->save();
         }
-
-        $grandTotal = array_sum($request->cart_total);
-
-        $orderMasterId = DB::table('tbl_order_master')->insertGetId([
-            'order_master_user_id' => auth()->id(),
-            'order_master_total' => $grandTotal,
-            'order_master_payment_status' => 'pending',
-            'order_master_payment_mode' => 'cash on delivery',
-            'order_master_status' => 'pending',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        foreach ($request->product_id as $key => $productId) {
-            DB::table('tbl_order_child')->insert([
-                'order_child_master_id' => $orderMasterId,
-                'order_child_user_id' => auth()->id(),
-                'order_child_product_id' => $productId,
-                'order_child_cart_price' => $request->cart_price[$key],
-                'order_child_cart_quantity' => $request->cart_quantity[$key],
-                'order_child_cart_total' => $request->cart_total[$key],
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
-
-        DB::table('tbl_addtocart')
-            ->where('user_id', auth()->id())
-            ->delete();
-
         return redirect('/checkOut');
     }
 
@@ -127,6 +119,12 @@ class websiteController extends Controller
         $shipping->shipping_address = $request->streetAddress;
         $shipping->shipping_pin_code = $request->pinCode;
         $shipping->save();
+
+        $cart = tbl_addtocart::where('user_id', $request->userId)->get();
+        foreach ($cart as $data) {
+            $data->delete();
+        }
+        return redirect('/order');
     }
 
     public function about()
@@ -242,18 +240,8 @@ class websiteController extends Controller
             return redirect('/login');
         }
 
-        $order = DB::table('tbl_order_child')
-            ->join('tbl_order_master', 'tbl_order_child.order_child_master_id', '=', 'tbl_order_master.order_master_id')
-            ->join('tbl_product', 'tbl_order_child.order_child_product_id', '=', 'tbl_product.product_id')
-            ->select(
-                'tbl_order_master.order_master_id as order_id',
-                'tbl_order_master.order_master_status as status',
-                'tbl_order_child.order_child_cart_quantity as quantity',
-                'tbl_order_child.order_child_cart_total as total_price',
-                'tbl_product.product_name',
-                'tbl_product.product_image'
-            )
-            ->where('tbl_order_child.order_child_user_id', auth()->id())
+         $order = DB::table('tbl_order_master')
+            ->where('order_master_user_id', auth()->id())
             ->get();
 
         return view('website.pages.order', compact('order'));
@@ -273,7 +261,6 @@ class websiteController extends Controller
             ->get();
 
         return view('website.pages.orderDetails', compact('orderDetails'));
-
-        return $id;
+        
     }
 }

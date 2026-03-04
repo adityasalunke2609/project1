@@ -141,7 +141,7 @@
                                         </h6>
 
                                         <p class="text-danger fw-semibold mb-2">
-                                            ₹ {{ $data->product_price }}
+                                            ₹ {{ $data->product_mrp }}
                                         </p>
 
                                         <div class="mb-2">

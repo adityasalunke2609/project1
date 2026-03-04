@@ -25,6 +25,7 @@
                                 <th scope="col">Total</th>
                             </tr>
                         </thead>
+                        
                         <tbody>
                             @foreach ($orderChild as $data)
                                 <tr>

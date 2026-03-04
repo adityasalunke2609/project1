@@ -85,7 +85,7 @@ Route::post('/add-to-wishlist', [websiteController::class, 'addtoWishlist']);
 Route::post('/remove-from-wishlist', [websiteController::class, 'removeFromWishlist']);
 
 Route::get('/order', [websiteController::class, 'order']);
-Route::get('/order/view/{id}', [websiteController::class, 'orderView']);
+Route::get('/order/view/{id}', [websiteController::class, 'viewOrder']);
 
 Route::get('/editprofile', [websiteController::class, 'editprofile'])
     ->name('editprofile');

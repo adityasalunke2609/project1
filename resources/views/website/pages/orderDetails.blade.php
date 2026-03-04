@@ -8,8 +8,8 @@
                     <div class="breadcrumb__text">
                         <h4>Order Details</h4>
                         <div class="breadcrumb__links">
-                            <a href="/master">Home</a>
-                            <a href="/master/shop">Shop</a>
+                            <a href="/">Home</a>
+                            <a href="shop">Shop</a>
                             <span>Order Details</span>
                         </div>
                     </div>
@@ -36,35 +36,33 @@
                             </thead>
                             <tbody>
 
-                                @foreach ($orderDetails as $item)
+                                @foreach ($orderDetails as $data)
                                     <tr>
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="{{ asset('uplode/product/' . $item->product_image) }}"
+                                                <img src="{{ asset('uploads/products/' . $data->product_image) }}"
                                                     alt="" height="120" width="120">
                                             </div>
                                             <div class="product__cart__item__text">
-                                                <h6>{{ $item->product_name }}</h6>
-                                                <h5>₹{{ $item->order_child_cart_price }}</h5>
+                                                <h6>{{ $data->product_name }}</h6>
+                                                <h5>₹{{ $data->order_child_cart_price }}</h5>
                                             </div>
                                         </td>
                                         <td class="quantity__item">
                                             <div class="quantity">
                                                 <div class="pro-qty-2">
-                                                    <input type="text" value="{{ $item->order_child_cart_quantity }}">
+                                                    <input type="text" value="{{ $data->order_child_cart_quantity }}">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="cart__price">₹{{ $item->product_mrp * $item->order_child_cart_quantity }}
+                                        <td class="cart__price">₹{{ $data->product_mrp * $data->order_child_cart_quantity }}
                                         </td>
                                         <td class="cart__close"><i class="fa fa-close"></i></td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
