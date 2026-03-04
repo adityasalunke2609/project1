@@ -99,7 +99,7 @@
                             <li>Total <span>{{$cart->sum('cart_total') }}</span></li>
                         </ul>
 
-                        <form action="{{ url('/checkOut') }}" method="POST">
+                        <form action="/checkOut" method="POST">
                             @csrf
 
                             @foreach ($cart as $data)
