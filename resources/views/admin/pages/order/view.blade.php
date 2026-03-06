@@ -5,45 +5,107 @@
         <div class="row">
             <div class="col-md-12">
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-6 card-title">Order Details</div>
-                        </div>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-white">
+                        <h4 class="card-title mb-0">Order Details</h4>
                     </div>
 
-                </div>
-                <div class="card-body">
-                    <table class="table table-head-bg-success bg-opacity-10">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Product Image</th>
-                                <th scope="col">Product Name</th>
-                                <th scope="col">Rate</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Total</th>
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-                            @foreach ($orderChild as $data)
-                                <tr>
-                                    <td>{{ $data->order_child_id }}</td>
+                    <div class="card-body">
 
-                                    <td><img src="{{ asset('uploads/products/' . $data->product_image) }}" width="50"
-                                            height="50"></td>
+                        <div class="row mb-4">
 
-                                    <td>{{ $data->product_name }}</td>
-                                    <td>{{ $data->order_child_cart_price }}</td>
-                                    <td>{{ $data->order_child_cart_quantity }}</td>
-                                    <td>{{ $data->order_child_cart_price * $data->order_child_cart_quantity }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            <!-- Order Info -->
+                            <div class="col-md-6">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <td>{{ $orderMaster->order_master_id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <td>{{ $orderMaster->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Price</th>
+                                        <td>₹ {{ $orderMaster->order_master_total }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Shipping Address</th>
+                                        <td>2</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- Payment Info -->
+                            <div class="col-md-6">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Payment Method</th>
+                                        <td>{{ $orderMaster->order_master_payment_mode }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Payment Status</th>
+                                        <td>{{ $orderMaster->order_master_payment_status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Order Status</th>
+                                        <td>{{ $orderMaster->order_master_status }} </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Receiver Name</th>
+                                        <td>2</td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <!-- Product Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Image</th>
+                                        <th>Product Name</th>
+                                        <th>Rate</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach ($orderChild as $data)
+                                        <tr>
+                                            <td>{{ $data->order_child_id }}</td>
+
+                                            <td>
+                                                <img src="{{ asset('uploads/products/' . $data->product_image) }}"
+                                                    width="50" height="50"
+                                                    style="border-radius:6px; object-fit:cover;">
+                                            </td>
+
+                                            <td>{{ $data->product_name }}</td>
+
+                                            <td>₹ {{ $data->order_child_cart_price }}</td>
+
+                                            <td>{{ $data->order_child_cart_quantity }}</td>
+
+                                            <td>
+                                                ₹ {{ $data->order_child_cart_price * $data->order_child_cart_quantity }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
+
     </div>
 @endsection

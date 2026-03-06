@@ -45,20 +45,35 @@
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6>{{ $data->product_name }}</h6>
-                                                <h5>${{ $data->product_mrp }}</h5>
+                                                <h5>${{ $data->product_sale }}</h5>
                                             </div>
                                         </td>
-                                        <td class="quantity__item">
+
+                                        
+                                        {{-- <td class="quantity__item">
                                             <div class="quantity">
-                                                <div class="pro-qty-2">
-                                                    <input type="text" value="1">
+                                                <div class="pro-qty">
+                                                    <input type="text" value="{{ $data->cart_quantity }}">
                                                 </div>
                                             </div>
+                                        </td> --}}
+
+                                        <td>
+                                            <form action="{{ url('/update-to-cart') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="cartID" value="{{ $data->cart_id }}">
+                                                <input type="hidden" name="productId" value="{{ $data->product_id }}">
+                                                <input type="hidden" name="price" value="{{ $data->cart_price }}">
+                                                <input type="hidden" name="total" value="{{ $data->cart_total }}">
+                                                <input type="hidden" name="userId"value="{{ $data->user_id }}">
+                                                <input type="hidden" name="totalAmount"value="{{ $data->user_id }}">
+
+                                                <input type="number" name="quantity" value="{{ $data->cart_quantity }}"
+                                                    min="1" class="form-control w-50 d-inline-block" onchange="this.form.submit()">
+                                            </form>
                                         </td>
 
                                         <td class="cart__price">${{ $data->cart_total}}</td>
-
-
                                         <form action="{{ url('/remove-from-cart') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="cartID" value="{{ $data->cart_id }}">
@@ -68,6 +83,8 @@
                                         </form>
                                     </tr>
                                 @endforeach
+
+
                             </tbody>
                         </table>
                     </div>
@@ -111,7 +128,7 @@
                                 <input type="hidden" name="totalAmount" value="{{$cart->sum('cart_total') }}">
                             @endforeach
 
-                            <button type="submit" class="primary-btn">
+                            <button type="submit" class="primary-btn btn px-s mx-4">
                                 Proceed to Checkout 
                             </button>
                         </form>

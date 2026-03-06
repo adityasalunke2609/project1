@@ -189,11 +189,14 @@ class websiteController extends Controller
 
     public function updateToCart(Request $request)
     {
+        // $product = tbl_product::find($request->productId);
         $cart = tbl_addtocart::find($request->cartID);
-        $cart->cart_quantity = $request->quantity;
-        $cart->cart_total = $request->cart_price * $request->quantity;
+        $cart->product_id = $request->productId;
+        $cart->user_id=$request->userId;
+        $cart->cart_price=$request->price;
+        $cart->cart_quantity=$request->quantity;
+        $cart->cart_total=$request->price * $request->quantity;
         $cart->save();
-
         return redirect('/shoppingCart');
     }
 
