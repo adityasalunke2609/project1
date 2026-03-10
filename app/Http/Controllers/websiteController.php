@@ -23,13 +23,37 @@ class websiteController extends Controller
         return view('website.pages.index', compact('products'));
     }
 
-    public function shop()
+    public function shop(Request $request)
     {
-        $products = tbl_product::all();
-        $category = tbl_category::all();
-        $subcategory = tbl_subcategory::all();
 
-        return View('website.pages.shop', compact('products', 'category', 'subcategory'));
+        $category = tbl_category::all();
+        $subCategory = tbl_subcategory::all();
+        $query = tbl_product::query();
+
+        if ($request->category_id) {
+            $query->where('product_caterogy_id', $request->category_id);
+        }
+
+       
+        if ($request->subcategory_id) {
+            $query->where('product_subcaterogy_id', $request->subcategory_id);
+        }
+     
+        if ($request->price) {
+
+            if ($request->price == '0-55') {
+                $query->whereBetween('product_sale', [0, 55]);
+            }
+
+            if ($request->price == '55-100') {
+                $query->whereBetween('product_sale', [55, 100]);
+            }
+
+        }
+        
+        $product = $query->get();
+        
+        return view('website.pages.shop', compact('product', 'category', 'subCategory'));
     }
 
     public function shopping_cart()
@@ -102,7 +126,6 @@ class websiteController extends Controller
 
             $orderchild->save();
 
-            
         }
 
         return redirect('/checkOut');
@@ -192,11 +215,12 @@ class websiteController extends Controller
         // $product = tbl_product::find($request->productId);
         $cart = tbl_addtocart::find($request->cartID);
         $cart->product_id = $request->productId;
-        $cart->user_id=$request->userId;
-        $cart->cart_price=$request->price;
-        $cart->cart_quantity=$request->quantity;
-        $cart->cart_total=$request->price * $request->quantity;
+        $cart->user_id = $request->userId;
+        $cart->cart_price = $request->price;
+        $cart->cart_quantity = $request->quantity;
+        $cart->cart_total = $request->price * $request->quantity;
         $cart->save();
+
         return redirect('/shoppingCart');
     }
 

@@ -28,11 +28,12 @@
                         <table class="table shopping-cart-table">
                             <thead>
                                 <tr class="bg-warning shadow">
-                                    <th>Product</th>
-                                    <th>Details</th>
-                                    <th class="text-center">Qty</th>
+                                    <th>Id</th>
+                                    <th>Order Date</th>
                                     <th class="text-center">Total</th>
-                                    <th class="text-center">Status</th>
+                                    <th class="text-center">Payment Status</th>
+                                    <th class="text-center">Payment Mode</th>
+                                    <th class="text-center">Order Status</th>
                                     <th class="text-center">Action</th>
                                 </tr>
                             </thead>

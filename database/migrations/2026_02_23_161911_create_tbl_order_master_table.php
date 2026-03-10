@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('order_master_payment_status')->default('pending');
             $table->string('order_master_payment_mode')->default('cash on delivery');
             $table->string('order_master_status')->default('pending');
+            $table->string('order_master_address')->nullable();
+            $table->string('order_master_pincode')->nullable();
+            $table->string('order_master_receiver_name')->nullable();
             $table->timestamps();
         });
     }

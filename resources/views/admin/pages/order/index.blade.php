@@ -40,12 +40,12 @@
 
                                     <td>
                                         <div class="d-flex">
-                                            <a href="/admin/order/view/{{ $data->order_master_id }}" class="mx-2">
+                                            <a href="/admin/order/view/{{ $data->order_master_id }}">
                                                 <i class="fa fa-eye fs-5"></i>
                                             </a>
-
                                             <div onclick="editData('{{ $data->order_master_id }}',
                                         '{{ $data->order_master_user_id }}',
+                                        '{{ $data->name }}',
                                         '{{ $data->order_master_total }}',
                                         '{{ $data->order_master_payment_status }}',
                                         '{{ $data->order_master_payment_mode }}',
@@ -55,7 +55,7 @@
 
                                                 <button type="button" class="bg-transparent border-0">
                                                     <i class="fa-solid fa-pen-to-square text-primary fs-5"
-                                                        data-bs-toggle="modal" data-bs-target="#editorder"></i>
+                                                        data-bs-toggle="modal" data-bs-target="#editOrderModal"></i>
                                                 </button>
                                             </div>
 
@@ -83,17 +83,15 @@
     @include('admin.pages.order.edit')
 
     <script>
-        function editData(order_master_id, order_master_user_id, order_master_total,
-            order_master_paymentstatus, order_master_paymentmethod,
-            order_master_orderstatus, created_at) {
-
-            document.getElementById('order_master_id').value = order_master_id;
-            document.getElementById('order_master_user_id').value = order_master_user_id;
-            document.getElementById('order_master_total').value = order_master_total;
-            document.getElementById('order_master_paymentstatus').value = order_master_paymentstatus;
-            document.getElementById('order_master_paymentmethod').value = order_master_paymentmethod;
-            document.getElementById('order_master_orderstatus').value = order_master_orderstatus;
-            document.getElementById('created_at').value = created_at;
+        function editData(id, userid, name, total, payment_status, payment_mode, order_status, date) {
+            document.getElementById('order_master_id').value = id;
+            document.getElementById('user_id').value = userid;
+            document.getElementById('customer_name').value = name;
+            document.getElementById('total_amount').value = total;
+            document.getElementById('payment_status').value = payment_status;
+            document.getElementById('payment_mode').value = payment_mode;
+            document.getElementById('order_status').value = order_status;
+            document.getElementById('order_date').value = date;
         }
     </script>
 @endsection

@@ -20,7 +20,7 @@
                     alt=""></a>
             <a href="/wishlist"><img src="{{ asset('website/img/icon/calendar.png') }}" alt=""></a>
             <a href="#"><img src="{{ asset('website/img/icon/cart.png') }}" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            <div class="price"></div>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
@@ -74,12 +74,13 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        
+
                                         <li>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="{{ route('editprofile') }}">Edit Profile</a>
 
                                             <div class="dropdown-divider"></div>
+
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Logout</a>
@@ -88,6 +89,7 @@
                                                 class="d-none">
                                                 @csrf
                                             </form>
+
                                         </li>
                                     </div>
                                 </ul>
@@ -127,12 +129,18 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="{{ asset('website/img/icon/search.png') }}"
-                                alt=""></a>
-                        <a href="/wishlist"><img src="{{ asset('website/img/icon/heart.png') }}" alt=""></a>
-                        <a href="/order"><img src="{{ asset('website/img/icon/cart.png') }}" alt="">
-                            <span>0</span></a>
-                        <div class="price">$0.00</div>
+                        <a href="#" class="btn btn-light btn-sm  shadow-sm">
+                            <i class="fa fa-search fa-lg"></i>
+                        </a>
+                        <a href="/wishlist"class="btn btn-light btn-sm  shadow-sm">
+                            <i class="fa fa-heart text-danger fa-lg"></i>
+                        </a>
+                        <a href="/order" class="btn btn-light btn-sm  shadow-sm">
+                            <i class="fa fa-shopping-bag fa-lg"></i>
+                        </a>
+                        <a href="/shoppingCart" class="btn btn-light btn-sm  shadow-sm">
+                            <i class="fa fa-shopping-cart fa-lg"></i>
+                        </a>
                     </div>
                 </div>
             </div>

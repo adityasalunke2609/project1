@@ -31,7 +31,11 @@
                                     </tr>
                                     <tr>
                                         <th>Shipping Address</th>
-                                        <td>2</td>
+                                        <td>{{ $orderMaster->order_master_address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pin Code</th>
+                                        <td>{{ $orderMaster->order_master_pincode }}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -53,12 +57,12 @@
                                     </tr>
                                     <tr>
                                         <th>Receiver Name</th>
-                                        <td>2</td>
+                                        <td>{{ $orderMaster->order_master_receiver_name }}</td>
                                     </tr>
                                 </table>
                             </div>
 
-                        </div>
+                        </div>  
 
                         <!-- Product Table -->
                         <div class="table-responsive">

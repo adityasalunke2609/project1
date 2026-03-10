@@ -34,12 +34,21 @@ class ProductController extends Controller
     {
         $product = new tbl_product;
         $path = public_path('uploads/products');
+        $name = '';
         $productImage = $request->file('productImage');
-        $productImageName = '';
-        if ($productImage) {
-            $productImageName = time().'_'.$productImage->getClientOriginalName();
-            $productImage->move($path, $productImageName);
+        for ($i = 0; $i < count($productImage); $i++) {
+            $imageName = '';
+            if ($productImage) {
+
+                $imageName = time().'_'.$productImage[$i]->getClientOriginalName();
+                $productImage[$i]->move($path, $imageName);
+                $name .= $imageName.',';
+
+            }
         }
+
+        return $name;
+
         $product->product_name = $request->productName;
         $product->product_hsncode = $request->productHSNcode;
         $product->product_weight = $request->productWeight;
@@ -57,7 +66,7 @@ class ProductController extends Controller
         $product->product_distributor = $request->distributor_price;
         $product->product_op_qty = $request->opening_qty;
         $product->product_op_value = $request->opening_value;
-        $product->product_image = $productImageName;
+        $product->product_image = $name;
         $product->save();
 
         return redirect('/admin/product')->with('success', 'product Add Successfully');

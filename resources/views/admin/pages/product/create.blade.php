@@ -136,7 +136,7 @@
 
                                 <div class="form-group">
                                     <label for="productImage">Product Image</label>
-                                    <input type="file" id="productImage" name="productImage"
+                                    <input type="file" id="productImage[]" multiple name="productImage"
                                         class="form-control">
                                 </div>
                             </div>
