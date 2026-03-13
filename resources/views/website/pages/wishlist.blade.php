@@ -1,5 +1,6 @@
 @extends('website.layout.master')
 @section('content')
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
         <div class="container">
@@ -48,7 +49,7 @@
                                         </td>
                                         <td>
                                             <div class="product__cart__item__text">
-                                                <h6>bag</h6>
+                                                <h6>{{ $data->product_name }}</h6>
                                             </div>  
                                         </td>
 
@@ -63,7 +64,7 @@
 
                                         <!-- Total -->
                                         <td class="cart__price text-center">
-                                            ${{ $data->product_price }}
+                                            ${{ $data->product_mrp}}
                                         </td>
 
                                          <form action="/remove-from-wishlist" method="post">

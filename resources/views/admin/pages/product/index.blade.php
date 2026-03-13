@@ -38,10 +38,11 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @foreach ($product as $data)
                             <tr>
                                 <td>{{ $data->product_id }}</td>
-                                <td><img src="{{ asset('uploads/products/' . $data->product_image) }}" width="100"
+                                <td><img src="{{ asset('uploads/products/' .json_decode($data->product_image)[0]) }}" width="100"
                                         height="100"> </td>
                                 <td>{{ $data->tax_name }}</td>
                                 <td>{{ $data->category_name }}</td>
@@ -63,7 +64,7 @@
                                             <input type="hidden" name="product_id" value="{{ $data->product_id }}">
                                             <button type="submit" class="btn">
                                                 <i class="fas fa-trash-alt text-danger fs-4"></i>
-                                            </button>
+                                            </button> 
                                         </form>
 
                                     </div>

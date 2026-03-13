@@ -79,3 +79,4 @@ class CategoryController extends Controller
         return redirect('/admin/category')->with("success","Category Updete Successfully");
     }
 }
+ 

@@ -101,6 +101,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row g-4">
 
                         @foreach ($product as $data)
@@ -110,26 +111,26 @@
 
                                     <!-- Image -->
                                     <div class="position-relative">
-                                        <img src="{{ asset('uploads/products/' . $data->product_image) }}"
+                                        <img src="{{ asset('uploads/products/' .json_decode($data->product_image)[0]) }}"
                                             class="card-img-top" style="height:250px; object-fit:cover;" alt="">
 
-                                        <!-- Icons (same type as first card) -->
+                                        <!-- Icons (same type as first card) -->    
                                         <ul class="list-unstyled d-flex gap-2 position-absolute top-0 end-0 m-2">
 
                                             <!-- Wishlist -->
-                                            <li>
-                                                <form action="/add-to-wishlist" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="product_id" value="{{ $data->product_id }}">
-                                                    <input type="hidden" name="user_id"
-                                                        value="{{ Auth::user()?->id ?? 0 }}">
-                                                    <button type="submit"
-                                                        class="btn btn-light btn-sm rounded-circle shadow-sm">
-                                                        <i class="fa fa-heart text-danger"></i>
-                                                    </button>
-                                                </form>
-                                            </li>
+                                            <form action="/add-to-wishlist" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $data->product_id }}">
+                                                <input type="hidden" name="user_id" value="{{ Auth::user()?->id ?? 0 }}">
 
+                                                <li>
+                                                    <button
+                                                        type="submit"class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                                        <i
+                                                            class="{{ in_array($data->product_id, $wishlistItems ?? []) ? 'fa fa-heart text-danger' : 'fa fa-heart' }}"></i>
+                                                    </button>
+                                                </li>
+                                            </form> 
                                             <!-- Compare -->
                                             <li>
                                                 <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">

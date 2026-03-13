@@ -113,20 +113,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><input class="form-control" name="barcode"></td>
-                                        <td><input class="form-control" name="qrcode"></td>
-                                        <td><input class="form-control" name="unique_code"></td>
-                                        <td><input class="form-control" name="mrp" type="number"></td>
-                                        <td><input class="form-control" name="sale_price" type="number">
+                                        <td><input class="form-control" name="barcode" id="barcode"><span class="text-danger" id="barcodeError"></span></td>
+                                        <td><input class="form-control" name="qrcode" id="qrcode"><span class="text-danger" id="qrcodeError"></span></td>
+                                        <td><input class="form-control" name="unique_code" id="unique_code"><span class="text-danger" id="uniqueCodeError"></span></td>
+                                        <td><input class="form-control" name="mrp" type="number" id="mrp"><span class="text-danger" id="mrpError"></span></td>
+                                        <td><input class="form-control" name="sale_price" type="number" id="sale_price"><span class="text-danger" id="salePriceError"></span>
                                         </td>
-                                        <td><input class="form-control" name="purchase_price" type="number">
+                                        <td><input class="form-control" name="purchase_price" type="number" id="purchase_price"><span class="text-danger" id="purchasePriceError"></span>
                                         </td>
-                                        <td><input class="form-control" name="wholesale_price" type="number"></td>
-                                        <td><input class="form-control" name="distributor_price" type="number"></td>
-                                        <td><input class="form-control" name="opening_qty" type="number">
-                                        </td>
-                                        <td><input class="form-control" name="opening_value" type="number">
-                                        </td>
+                                        <td><input class="form-control" name="wholesale_price" type="number" id="wholesale_price"><span class="text-danger" id="wholesalePriceError"></span></td>
+                                        <td><input class="form-control" name="distributor_price" type="number" id="distributor_price"><span class="text-danger" id="distributorPriceError"></span></td>
+                                        <td><input class="form-control" name="opening_qty" type="number" id="opening_qty"><span class="text-danger" id="openingQtyError"></span></td>
+                                        <td><input class="form-control" name="opening_value" type="number" id="opening_value"><span class="text-danger" id="openingValueError"></span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,8 +134,8 @@
 
                                 <div class="form-group">
                                     <label for="productImage">Product Image</label>
-                                    <input type="file" id="productImage[]" multiple name="productImage"
-                                        class="form-control">
+                                    <input type="file" id="productImage" name="productImage[]"
+                                        multiple class="form-control">
                                 </div>
                             </div>
                         </div>

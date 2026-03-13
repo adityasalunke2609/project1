@@ -16,13 +16,17 @@
 
             <div class="row g-4">
                 @foreach ($products as $data)
+                    @php
+                        $images = json_decode($data->product_image);
+                    @endphp
+
                     <div class="col-lg-3 col-md-6 col-sm-12">
 
                         <div class="card h-80 shadow-lg border-0 mt-3 position-relative overflow-hidden">
 
                             <!-- Image -->
                             <div class="position-relative">
-                                <img src="{{ asset('uploads/products/' . $data->product_image) }}" class="card-img-top"
+                                <img src="{{ asset('uploads/products/' . $images[0]) }}" class="card-img-top"
                                     style="height:250px; object-fit:cover;" alt="">
 
                                 <!-- Icons (same type as first card) -->
@@ -50,7 +54,7 @@
 
                                     <!-- Search -->
                                     <li>
-                                        <a href="#" class="btn btn-light btn-sm rounded-circle shadow-sm">
+                                        <a href="" class="btn btn-light btn-sm rounded-circle shadow-sm">
                                             <i class="fa fa-search"></i>
                                         </a>
                                     </li>
@@ -66,7 +70,7 @@
                                 </h6>
 
                                 <p class="text-danger fw-semibold mb-2">
-                                    ₹ {{ $data->product_mrp }}
+                                    ₹. {{ $data->product_mrp }}
                                 </p>
 
                                 <div class="mb-2">
